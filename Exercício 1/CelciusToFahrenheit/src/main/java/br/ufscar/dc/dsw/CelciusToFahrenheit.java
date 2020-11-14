@@ -34,19 +34,27 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         String stepValue = request.getParameter("step");
         int step = (stepValue == null) ?  5 : Integer.parseInt(stepValue);
 
-        out.println("<table>");
-        out.println("<tr>");
-        out.println("<th>Celsius</th>");
-        out.println("<th>Fahrenheit</th>");
-        out.println("</tr>");
-        for (int celsius = min; celsius <= max; celsius += step) {
-            double fahr = 1.8 * celsius + 32;
-            out.println("<tr>");
-            out.println("<td>" + celsius + "</td>");
-            out.println("<td>" + fahr + "</td>");
-            out.println("</tr>");
+        if (step <= 0) {
+            out.println("<p>Erro nos valores informados. Não usar incremento negativo.</p>");
         }
-        out.println("</table>");
+        else if (min > max) {
+            out.println("<p>Erro nos valores informados. \"Mínimo\" deve ser menor que \"Máximo\".</p>");
+        }
+        else {
+            out.println("<table>");
+            out.println("<tr>");
+            out.println("<th>Celsius</th>");
+            out.println("<th>Fahrenheit</th>");
+            out.println("</tr>");
+            for (int celsius = min; celsius <= max; celsius += step) {
+                double fahr = 1.8 * celsius + 32;
+                out.println("<tr>");
+                out.println("<td>" + celsius + "</td>");
+                out.println("<td>" + fahr + "</td>");
+                out.println("</tr>");
+            }
+            out.println("</table>");
+        }
 
         out.println("</body>");
         out.println("</html>");
