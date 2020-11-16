@@ -28,11 +28,11 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         out.println("<h1>Conversão Celcius para Fahrenheit</h1>");
 
         String minValue = request.getParameter("min");
-        int min = (minValue == null) ? -100 : Integer.parseInt(minValue);
+        int min = (minValue == null || minValue == "") ? -100 : Integer.parseInt(minValue);
         String maxValue = request.getParameter("max");
-        int max = (maxValue == null) ?  100 : Integer.parseInt(maxValue);
+        int max = (maxValue == null || maxValue == "") ?  100 : Integer.parseInt(maxValue);
         String stepValue = request.getParameter("step");
-        int step = (stepValue == null) ?  5 : Integer.parseInt(stepValue);
+        int step = (stepValue == null || stepValue == "") ?  5 : Integer.parseInt(stepValue);
 
         if (step <= 0) {
             out.println("<p>Erro nos valores informados. Não usar incremento negativo.</p>");
