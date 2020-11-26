@@ -5,12 +5,12 @@ import java.time.LocalDateTime;
 public class Locacao {
     private Cliente c;
     private Locadora l;
-    private LocalDateTime data;
+    private LocalDateTime dataReserva;
 
-    public Locacao(Cliente c, Locadora l,  LocalDateTime data) {
+    public Locacao(Cliente c, Locadora l,  LocalDateTime dataReserva) {
         this.setCliente(c);
         this.setLocadora(l);
-        this.setData(data);
+        this.setDataReserva(dataReserva);
     }
 
     public void setCliente(Cliente c) {
@@ -29,11 +29,11 @@ public class Locacao {
         return this.l;
     }
 
-    public void setData(LocalDateTime data) {
-        this.data = data;
+    public void setDataReserva(LocalDateTime dataReserva) {
+        this.dataReserva = dataReserva;
     }
 
-    public LocalDateTime getData() {
-        return this.data;
+    public LocalDateTime getDataReserva() {
+        return this.dataReserva;
     }
 }

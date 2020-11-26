@@ -7,6 +7,14 @@ public class Locadora {
     private String senha;
     private String cidade;
 
+    public Locadora(String cnpj, String nome, String email, String senha, String cidade) {
+        this.setCNPJ(cnpj);
+        this.setNome(nome);
+        this.setEmail(email);
+        this.setSenha(senha);
+        this.setCidade(cidade);
+    }
+
     public void setCNPJ(String cnpj) {
         this.cnpj = cnpj;
     }
