@@ -12,6 +12,29 @@ import br.ufscar.dc.dsw.domain.Locadora;
 
 public class LocadoraDAO extends GenericDAO {
 
+    public void insert(Locadora locadora){
+        String sql = "INSERT INTO Locadora (cnpj, nome, email, senha, cidade)";
+        sql += " VALUES(?, ?, ?, ?, ?)";
+
+        try{
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, locadora.getCNPJ());
+            statement.setString(2, locadora.getNome());
+            statement.setString(3, locadora.getEmail());
+            statement.setString(4, locadora.getSenha());
+            statement.setString(5, locadora.getCidade());
+            statement.executeUpdate();
+
+            statement.close();
+            conn.close();
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
     public List<Locadora> getAll() {
 
         List<Locadora> listaLocadoras = new ArrayList<>();
@@ -43,6 +66,45 @@ public class LocadoraDAO extends GenericDAO {
             throw new RuntimeException(e);
         }
         return listaLocadoras;
+    }
+
+    public void delete(Locadora locadora){
+        String sql = "Delete FROM Locadora where cnpj = ?";
+
+        try{
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setString(1, locadora.getCNPJ());
+            statement.executeUpdate();
+
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void update(Locadora locadora){
+        String sql = "UPDATE Locadora SET cnpj = ?, nome = ?, email = ?, senha = ?, cidade = ?";
+
+        try{
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, locadora.getCNPJ());
+            statement.setString(2, locadora.getNome());
+            statement.setString(3, locadora.getEmail());
+            statement.setString(4, locadora.getSenha());
+            statement.setString(5, locadora.getCidade());
+            statement.executeUpdate();
+
+            statement.close();
+            conn.close();
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 
     public Locadora get(String cnpj) {
