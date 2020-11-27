@@ -8,18 +8,18 @@ public class Locadora {
     private String cidade;
 
     public Locadora(String cnpj, String nome, String email, String senha, String cidade) {
-        this.setCNPJ(cnpj);
+        this.setCnpj(cnpj);
         this.setNome(nome);
         this.setEmail(email);
         this.setSenha(senha);
         this.setCidade(cidade);
     }
 
-    public void setCNPJ(String cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
-    public String getCNPJ() {
+    public String getCnpj() {
         return this.cnpj;
     }
 

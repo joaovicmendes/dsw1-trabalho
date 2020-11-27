@@ -21,7 +21,7 @@ public class LocadoraDAO extends GenericDAO {
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement = conn.prepareStatement(sql);
-            statement.setString(1, locadora.getCNPJ());
+            statement.setString(1, locadora.getCnpj());
             statement.setString(2, locadora.getNome());
             statement.setString(3, locadora.getEmail());
             statement.setString(4, locadora.getSenha());
@@ -75,7 +75,7 @@ public class LocadoraDAO extends GenericDAO {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setString(1, locadora.getCNPJ());
+            statement.setString(1, locadora.getCnpj());
             statement.executeUpdate();
 
             statement.close();
@@ -93,7 +93,7 @@ public class LocadoraDAO extends GenericDAO {
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement = conn.prepareStatement(sql);
-            statement.setString(1, locadora.getCNPJ());
+            statement.setString(1, locadora.getCnpj());
             statement.setString(2, locadora.getNome());
             statement.setString(3, locadora.getEmail());
             statement.setString(4, locadora.getSenha());

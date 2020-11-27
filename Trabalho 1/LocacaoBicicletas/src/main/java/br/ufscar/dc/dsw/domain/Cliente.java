@@ -12,11 +12,11 @@ public class Cliente {
     private LocalDate dataNascimento;
 
     public Cliente(String cpf) {
-        this.setCPF(cpf);
+        this.setCpf(cpf);
     }
 
     public Cliente(String cpf, String nome, String email, String senha, String genero, String telefone, LocalDate dataNascimento) {
-        this.setCPF(cpf);
+        this.setCpf(cpf);
         this.setNome(nome);
         this.setEmail(email);
         this.setSenha(senha);
@@ -25,11 +25,11 @@ public class Cliente {
         this.setDataNascimento(dataNascimento);
     }
 
-    public void setCPF(String cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public String getCPF() {
+    public String getCpf() {
         return this.cpf;
     }
 
