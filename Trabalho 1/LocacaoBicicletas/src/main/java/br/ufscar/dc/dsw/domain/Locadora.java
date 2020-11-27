@@ -19,7 +19,7 @@ public class Locadora {
         this.cnpj = cnpj;
     }
 
-    public String getCPF() {
+    public String getCNPJ() {
         return this.cnpj;
     }
 
