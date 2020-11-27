@@ -41,13 +41,13 @@ public class LocadoraController extends HttpServlet {
         try {
             switch (action) {
                 case "/cadastro":
-                    //apresentaFormCadastro(request, response);
+                    apresentaFormCadastro(request, response);
                     break;
                 case "/insercao":
-                    //insere(request, response);
+                    insere(request, response);
                     break;
                 case "/remocao":
-                    //remove(request, response);
+                    remove(request, response);
                     break;
                 case "/edicao":
                     //apresentaFormEdicao(request, response);
@@ -97,6 +97,32 @@ public class LocadoraController extends HttpServlet {
         List<Locadora> listaLocadoras = dao.getAllCidade(cidade);
         request.setAttribute("listaLocadoras", listaLocadoras);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/locadora/listaCidade.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/locadora/formCadastro.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String cnpj = request.getParameter("cnpj");
+        String nome = request.getParameter("nome");
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        String cidade = request.getParameter("cidade");
+        Locadora locadora = new Locadora(cnpj, nome, email, senha, cidade);
+        dao.insert(locadora);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("locadoras");
+        dispatcher.forward(request, response);
+    }
+
+    private void remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String cnpj = request.getParameter("cnpj");
+        Locadora locadora = dao.get(cnpj);
+        dao.delete(locadora);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("locadoras");
         dispatcher.forward(request, response);
     }
 }
