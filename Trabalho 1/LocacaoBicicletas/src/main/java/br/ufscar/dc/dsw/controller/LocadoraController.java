@@ -106,6 +106,7 @@ public class LocadoraController extends HttpServlet {
     }
 
     private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String cnpj = request.getParameter("cnpj");
         String nome = request.getParameter("nome");
         String email = request.getParameter("email");
