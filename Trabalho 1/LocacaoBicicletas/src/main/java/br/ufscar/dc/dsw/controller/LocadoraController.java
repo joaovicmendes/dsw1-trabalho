@@ -4,8 +4,10 @@ import br.ufscar.dc.dsw.dao.LocadoraDAO;
 import br.ufscar.dc.dsw.domain.Locadora;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,6 +55,12 @@ public class LocadoraController extends HttpServlet {
                 case "/atualizacao":
                     //atualize(request, response);
                     break;
+                case "/escolherCidade":
+                    escolherCidade(request, response);
+                    break;
+                case "/listaCidade":
+                    listaCidade(request, response);
+                    break;
                 default:
                     lista(request, response);
                     break;
@@ -66,6 +74,29 @@ public class LocadoraController extends HttpServlet {
         List<Locadora> listaLocadoras = dao.getAll();
         request.setAttribute("listaLocadoras", listaLocadoras);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/locadora/lista.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void escolherCidade(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Locadora> listaLocadoras = dao.getAll();
+        Set<String> listaCidades = new HashSet<String>();
+
+        for (int i = 0; i < listaLocadoras.size(); i++) {
+            String cidade = listaLocadoras.get(i).getCidade();
+            if (!listaCidades.contains(cidade)) {
+                listaCidades.add(cidade);
+            }
+        }
+        request.setAttribute("listaCidades", listaCidades);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/locadora/escolherCidade.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void listaCidade(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String cidade = request.getParameter("cidade");
+        List<Locadora> listaLocadoras = dao.getAllCidade(cidade);
+        request.setAttribute("listaLocadoras", listaLocadoras);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/locadora/listaCidade.jsp");
         dispatcher.forward(request, response);
     }
 }

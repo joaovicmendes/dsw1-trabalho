@@ -13,8 +13,9 @@
 	<div align="center">
 		<h1>Gerenciamento de Locadoras</h1>
 		<h2>
-			<a href="/<%=contextPath%>">Menu Principal</a> &nbsp;&nbsp;&nbsp; <a
-				href="/<%=contextPath%>/locadoras/cadastro">Adicione Nova Locadora</a>
+			<a href="/<%=contextPath%>">Menu Principal</a> &nbsp;&nbsp;&nbsp;
+			<a href="/<%=contextPath%>/locadoras/cadastro">Adicione Nova Locadora</a> &nbsp;&nbsp;&nbsp;
+			<a href="/<%=contextPath%>/locadoras/escolherCidade">Mostrar Locadoras por Cidade</a>
 		</h2>
 	</div>
 
