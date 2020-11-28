@@ -50,10 +50,10 @@ public class LocadoraController extends HttpServlet {
                     remove(request, response);
                     break;
                 case "/edicao":
-                    //apresentaFormEdicao(request, response);
+                    apresentaFormEdicao(request, response);
                     break;
                 case "/atualizacao":
-                    //atualize(request, response);
+                    atualize(request, response);
                     break;
                 case "/escolherCidade":
                     escolherCidade(request, response);
@@ -123,6 +123,45 @@ public class LocadoraController extends HttpServlet {
         String cnpj = request.getParameter("cnpj");
         Locadora locadora = dao.get(cnpj);
         dao.delete(locadora);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("locadoras");
+        dispatcher.forward(request, response);
+    }
+
+    private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String cnpj = request.getParameter("cnpj");
+        Locadora locadora = dao.get(cnpj);
+        request.setAttribute("locadora", locadora);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/locadora/formEdicao.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void atualize(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+
+        String cnpj = request.getParameter("cnpj");
+        Locadora locadora = dao.get(cnpj);
+
+        String nome = request.getParameter("nome");
+        if (nome == "") {
+            nome = locadora.getNome();
+        }
+        String email = request.getParameter("email");
+        if (email == "") {
+            email = locadora.getEmail();
+        }
+        String senha = request.getParameter("senha");
+        if (senha == "") {
+            senha = locadora.getSenha();
+        }
+        String cidade = request.getParameter("cidade");
+        if (cidade == "") {
+            cidade = locadora.getCidade();
+        }
+
+        Locadora locadoraAtualizada = new Locadora(cnpj, nome, email, senha, cidade);
+        dao.update(locadoraAtualizada);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("locadoras");
         dispatcher.forward(request, response);
     }
