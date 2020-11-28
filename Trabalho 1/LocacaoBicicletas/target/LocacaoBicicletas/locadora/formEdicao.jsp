@@ -23,7 +23,7 @@
 		<form action="/<%= contextPath%>/locadoras/atualizacao" method="get">
 			<fieldset>
 				<legend>Edição de Locadora</legend>
-				CNPJ </br>
+				CNPJ (não é possível alterar)</br>
 				<input type="text" name="cnpj" value="${locadora.cnpj}" readonly/> <br/>
 				Nome </br>
 				<input type="text" name="nome" value="${locadora.nome}"/> <br/>

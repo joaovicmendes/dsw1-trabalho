@@ -40,9 +40,9 @@
 					<td>${cliente.genero}</td>
                     <td>${cliente.telefone}</td>
                     <td>${cliente.dataNascimento}</td>
-					<td><a href="/<%= contextPath%>/clientes/edicao?id=${cliente.cpf}">Edição</a>
+					<td><a href="/<%= contextPath%>/clientes/edicao?cpf=${cliente.cpf}">Edição</a>
 						&nbsp;&nbsp;&nbsp;&nbsp; <a
-						href="/<%= contextPath%>/clientes/remocao?id=${cliente.cpf}"
+						href="/<%= contextPath%>/clientes/remocao?cpf=${cliente.cpf}"
 						onclick="return confirm('Tem certeza de que deseja excluir este item?');">
 							Remoção </a></td>
 				</tr>
