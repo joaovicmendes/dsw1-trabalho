@@ -24,7 +24,7 @@ public class ClienteDAO extends GenericDAO {
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement = conn.prepareStatement(sql);
-            statement.setString(1, cliente.getCPF());
+            statement.setString(1, cliente.getCpf());
             statement.setString(2, cliente.getNome());
             statement.setString(3, cliente.getEmail());
             statement.setString(4, cliente.getSenha());
@@ -82,7 +82,7 @@ public class ClienteDAO extends GenericDAO {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setString(1, cliente.getCPF());
+            statement.setString(1, cliente.getCpf());
             statement.executeUpdate();
 
             statement.close();
@@ -93,20 +93,20 @@ public class ClienteDAO extends GenericDAO {
     }
 
     public void update(Cliente cliente){
-        String sql = "UPDATE Livro SET cpf = ?, nome = ?, email = ?, senha = ?";
-        sql += ", genero = ?, telefone = ?, dataNascimento = ?, WHERE id = ?";
+        String sql = "UPDATE Cliente SET nome = ?, email = ?, senha = ?";
+        sql += ", genero = ?, telefone = ?, dataNascimento = ? WHERE cpf = ?";
 
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setString(1, cliente.getCPF());
-            statement.setString(2, cliente.getNome());
-            statement.setString(3, cliente.getEmail());
-            statement.setString(4, cliente.getSenha());
-            statement.setString(5, cliente.getGenero());
-            statement.setString(6, cliente.getTelefone());
-            statement.setDate(7, java.sql.Date.valueOf(cliente.getDataNascimento()));
+            statement.setString(1, cliente.getNome());
+            statement.setString(2, cliente.getEmail());
+            statement.setString(3, cliente.getSenha());
+            statement.setString(4, cliente.getGenero());
+            statement.setString(5, cliente.getTelefone());
+            statement.setDate(6, java.sql.Date.valueOf(cliente.getDataNascimento()));
+            statement.setString(7, cliente.getCpf());
             statement.executeUpdate();
 
             statement.close();

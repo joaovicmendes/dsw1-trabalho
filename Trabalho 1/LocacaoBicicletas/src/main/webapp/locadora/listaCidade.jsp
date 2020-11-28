@@ -15,7 +15,7 @@
 		<h2>
 			<a href="/<%=contextPath%>">Menu Principal</a> &nbsp;&nbsp;&nbsp;
 			<a href="/<%=contextPath%>/locadoras/cadastro">Adicione Nova Locadora</a> &nbsp;&nbsp;&nbsp;
-			<a href="/<%=contextPath%>/locadoras/escolherCidade">Mostrar Locadoras por Cidade</a>
+			<a href="/<%=contextPath%>/locadoras/lista">Mostrar Todas as Locadoras</a>
 		</h2>
 	</div>
 

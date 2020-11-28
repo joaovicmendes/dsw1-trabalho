@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.time.LocalDate;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,19 +40,19 @@ public class ClienteController extends HttpServlet {
         try {
             switch (action) {
                 case "/cadastro":
-                    //apresentaFormCadastro(request, response);
+                    apresentaFormCadastro(request, response);
                     break;
                 case "/insercao":
-                    //insere(request, response);
+                    insere(request, response);
                     break;
                 case "/remocao":
-                    //remove(request, response);
+                    remove(request, response);
                     break;
                 case "/edicao":
-                    //apresentaFormEdicao(request, response);
+                    apresentaFormEdicao(request, response);
                     break;
                 case "/atualizacao":
-                    //atualize(request, response);
+                    atualize(request, response);
                     break;
                 default:
                     lista(request, response);
@@ -66,6 +67,94 @@ public class ClienteController extends HttpServlet {
         List<Cliente> listaClientes = dao.getAll();
         request.setAttribute("listaClientes", listaClientes);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/cliente/lista.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/cliente/formCadastro.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String cpf = request.getParameter("cpf");
+        String nome = request.getParameter("nome");
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        String genero = request.getParameter("genero");
+        String telefone = request.getParameter("telefone");
+        LocalDate dataNascimento = LocalDate.now();
+        try {
+            dataNascimento = LocalDate.parse(request.getParameter("dataNascimento"));
+        }
+        catch (Exception e) {
+            dataNascimento = LocalDate.now();
+        }
+
+        Cliente cliente = new Cliente(cpf, nome, email, senha, genero, telefone, dataNascimento);
+        dao.insert(cliente);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("clientes");
+        dispatcher.forward(request, response);
+    }
+
+    private void remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String cpf = request.getParameter("cpf");
+        Cliente cliente = dao.get(cpf);
+        dao.delete(cliente);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("clientes");
+        dispatcher.forward(request, response);
+    }
+
+    private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String cpf = request.getParameter("cpf");
+        Cliente cliente = dao.get(cpf);
+        request.setAttribute("cliente", cliente);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/cliente/formEdicao.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void atualize(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+
+        String cpf = request.getParameter("cpf");
+        Cliente cliente = dao.get(cpf);
+
+        String nome = request.getParameter("nome");
+        if (nome == "") {
+            nome = cliente.getNome();
+        }
+        String email = request.getParameter("email");
+        if (email == "") {
+            email = cliente.getEmail();
+        }
+        String senha = request.getParameter("senha");
+        if (senha == "") {
+            senha = cliente.getSenha();
+        }
+        String genero = request.getParameter("genero");
+        if (genero == "") {
+            genero = cliente.getGenero();
+        }
+
+        String telefone = request.getParameter("telefone");
+        if (telefone == "") {
+            telefone = cliente.getTelefone();
+        }
+
+        LocalDate dataNascimento = cliente.getDataNascimento();
+        try {
+            dataNascimento = LocalDate.parse(request.getParameter("dataNascimento"));
+        }
+        catch (Exception e) {
+            dataNascimento = cliente.getDataNascimento();
+        }
+
+        Cliente clienteAtualizado = new Cliente(cpf, nome, email, senha, genero, telefone, dataNascimento);
+        dao.update(clienteAtualizado);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("clientes");
         dispatcher.forward(request, response);
     }
 }

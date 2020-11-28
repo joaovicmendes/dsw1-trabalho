@@ -21,7 +21,7 @@ public class LocadoraDAO extends GenericDAO {
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement = conn.prepareStatement(sql);
-            statement.setString(1, locadora.getCNPJ());
+            statement.setString(1, locadora.getCnpj());
             statement.setString(2, locadora.getNome());
             statement.setString(3, locadora.getEmail());
             statement.setString(4, locadora.getSenha());
@@ -75,7 +75,7 @@ public class LocadoraDAO extends GenericDAO {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setString(1, locadora.getCNPJ());
+            statement.setString(1, locadora.getCnpj());
             statement.executeUpdate();
 
             statement.close();
@@ -86,18 +86,18 @@ public class LocadoraDAO extends GenericDAO {
     }
 
     public void update(Locadora locadora){
-        String sql = "UPDATE Locadora SET cnpj = ?, nome = ?, email = ?, senha = ?, cidade = ?";
+        String sql = "UPDATE Locadora SET nome = ?, email = ?, senha = ?, cidade = ? WHERE cnpj = ?";
 
         try{
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement = conn.prepareStatement(sql);
-            statement.setString(1, locadora.getCNPJ());
-            statement.setString(2, locadora.getNome());
-            statement.setString(3, locadora.getEmail());
-            statement.setString(4, locadora.getSenha());
-            statement.setString(5, locadora.getCidade());
+            statement.setString(1, locadora.getNome());
+            statement.setString(2, locadora.getEmail());
+            statement.setString(3, locadora.getSenha());
+            statement.setString(4, locadora.getCidade());
+            statement.setString(5, locadora.getCnpj());
             statement.executeUpdate();
 
             statement.close();
@@ -135,5 +135,36 @@ public class LocadoraDAO extends GenericDAO {
             throw new RuntimeException(e);
         }
         return locadora;
+    }
+
+    public List<Locadora> getAllCidade(String cidade) {
+        List<Locadora> listaLocadoras = new ArrayList<>();
+
+        String sql = "SELECT * from Locadora where cidade = ?";
+
+        try {
+            // Conectando no banco e realizando consulta
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, cidade);
+            ResultSet resultSet = statement.executeQuery();
+
+            // Convertendo resultados para a classe interna Locadora
+            while (resultSet.next()) {
+                String cnpj = resultSet.getString("cnpj");
+                String nome = resultSet.getString("nome");
+                String email = resultSet.getString("email");
+                String senha = resultSet.getString("senha");
+                Locadora locadora = new Locadora(cnpj, nome, email, senha, cidade);
+                listaLocadoras.add(locadora);
+            }
+
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listaLocadoras;
     }
 }
