@@ -31,7 +31,7 @@ public class LocadoraDAO extends GenericDAO {
             statement.close();
             conn.close();
         } catch (SQLException e){
-            throw new RuntimeException(e);
+        	throw new RuntimeException(e);
         }
     }
 

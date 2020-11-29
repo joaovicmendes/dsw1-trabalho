@@ -1,41 +1,57 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html>
-<head>
-<title>Gerenciamento de Locadoras</title>
-</head>
-<body>
-	<%
-		String contextPath = request.getContextPath().replace("/", "");
-	%>
-	<div align="center">
-		<h1>Gerenciamento de Locadoras</h1>
-		<h2>
-			<a href="/<%=contextPath%>">Menu Principal</a> &nbsp;&nbsp;&nbsp;
-			<a href="/<%=contextPath%>/locadoras/cadastro">Adicione Nova Locadora</a> &nbsp;&nbsp;&nbsp;
-			<a href="/<%=contextPath%>/locadoras/lista">Mostrar Todas as Locadoras</a>
-		</h2>
-	</div>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-	<div>
-		<form action="/<%= contextPath%>/locadoras/insercao" method="post">
-			<fieldset>
-				<legend>Cadastro de Locadora</legend>
-				CNPJ </br>
-				<input type="text" name="cnpj"/> <br/>
-				Nome </br>
-				<input type="text" name="nome"/> <br/>
-				Email </br>
-				<input type="email" name="email"/> <br/>
-				Senha </br>
-				<input type="password" name="senha"/> <br/>
-				Cidade </br>
-				<input type="text" name="cidade"/> <br/>
-				<input type="submit" name="enviar" value="Cadastrar" />
-			</fieldset>
-		</form>
-	</div>
-</body>
+<html>
+	<fmt:bundle basename="msgs">
+		<head>
+			<title>
+				<fmt:message key="rental_company_managing"/>
+			</title>
+		</head>
+		<body>
+			<%
+				String contextPath = request.getContextPath().replace("/", "");
+			%>
+			<div align="center">
+				<h1>
+					<fmt:message key="rental_company_managing"/>
+				</h1>
+				<h2>
+					<a href="/<%=contextPath%>">
+						<fmt:message key="main_menu"/>
+					</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="/<%=contextPath%>/locadoras/cadastro">
+						<fmt:message key="rental_company_new"/>
+					</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="/<%=contextPath%>/locadoras/lista">
+						<fmt:message key="rental_company_show_all"/>
+					</a>
+				</h2>
+			</div>
+			<div>
+				<form action="/<%= contextPath%>/locadoras/insercao" method="post">
+					<fieldset>
+						<legend>
+							<fmt:message key="rental_company_registration"/>
+						</legend>
+						<fmt:message key="cnpj"/> </br>
+						<input type="text" name="cnpj"/> <br/>
+						<fmt:message key="name"/> </br>
+						<input type="text" name="nome"/> <br/>
+						<fmt:message key="email"/> </br>
+						<input type="email" name="email"/> <br/>
+						<fmt:message key="pw"/> </br>
+						<input type="password" name="senha"/> <br/>
+						<fmt:message key="city"/> </br>
+						<input type="text" name="cidade"/> <br/>
+						<input type="submit" name="enviar" value="<fmt:message key="register"/>"/>
+					</fieldset>
+				</form>
+			</div>
+		</body>
+	</fmt:bundle>
 </html>

@@ -112,6 +112,7 @@ public class LocadoraController extends HttpServlet {
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
         String cidade = request.getParameter("cidade");
+        
         Locadora locadora = new Locadora(cnpj, nome, email, senha, cidade);
         dao.insert(locadora);
 

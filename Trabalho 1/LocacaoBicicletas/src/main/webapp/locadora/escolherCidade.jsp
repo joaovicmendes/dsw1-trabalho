@@ -1,33 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html>
-<head>
-<title>Gerenciamento de Locadoras</title>
-</head>
-<body>
-	<%
-		String contextPath = request.getContextPath().replace("/", "");
-	%>
-	<div align="center">
-		<h1>Gerenciamento de Locadoras</h1>
-		<h2>
-			<a href="/<%=contextPath%>">Menu Principal</a> &nbsp;&nbsp;&nbsp;
-			<a href="/<%=contextPath%>/locadoras/cadastro">Adicione Nova Locadora</a> &nbsp;&nbsp;&nbsp;
-			<a href="/<%=contextPath%>/locadoras/lista">Mostrar Todas as Locadoras</a>
-		</h2>
-	</div>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-	<div align="center">
-		<form action="/<%= contextPath%>/locadoras/listaCidade" method="get">
-			<select name="cidade">
-				<c:forEach var="cidade" items="${requestScope.listaCidades}">	
-					<option value ="${cidade}">${cidade}</option>
-				</c:forEach>
-			</select>
-			<p><input type="submit" value="Escolher"></p>
-		</form>
-	</div>
-</body>
+<html>
+	<fmt:bundle basename="msgs">
+		<head>
+			<title>
+				<fmt:message key="rental_company_managing"/>
+			</title>
+		</head>
+		<body>
+			<%
+				String contextPath = request.getContextPath().replace("/", "");
+			%>
+			<div align="center">
+				<h1>
+					<fmt:message key="rental_company_managing"/>
+				</h1>
+				<h2>
+					<a href="/<%=contextPath%>">
+						<fmt:message key="main_menu"/>
+					</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="/<%=contextPath%>/locadoras/cadastro">
+						<fmt:message key="rental_company_new"/>
+					</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="/<%=contextPath%>/locadoras/lista">
+						<fmt:message key="rental_company_show_all"/>
+					</a>
+				</h2>
+			</div>
+			<div align="center">
+				<form action="/<%= contextPath%>/locadoras/listaCidade" method="get">
+					<select name="cidade">
+						<c:forEach var="cidade" items="${requestScope.listaCidades}">	
+							<option value ="${cidade}">${cidade}</option>
+						</c:forEach>
+					</select>
+					<p>
+						<input type="submit" value="<fmt:message key="choose"/>">
+					</p>
+				</form>
+			</div>
+		</body>
+	</fmt:bundle>
 </html>
