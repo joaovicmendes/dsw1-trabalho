@@ -46,7 +46,7 @@
 						<input type="text" name="genero" value="${cliente.genero}"/> <br/>
 						<fmt:message key="phone"/> </br>
 						<input type="text" name="telefone" value="${cliente.telefone}"/> <br/>
-						<fmt:message key="birhtdata"/> </br>
+						<fmt:message key="birthdate"/> </br>
 						<input type="text" name="dataNascimento" value="${cliente.dataNascimento}"/> <br/>
 						<input type="submit" name="enviar" value="<fmt:message key="update"/>" />
 					</fieldset>

@@ -46,8 +46,8 @@
 						<input type="text" name="genero"/> <br/>
 						<fmt:message key="phone"/> </br>
 						<input type="text" name="telefone" placeholder="X XXXX-XXXX"/> <br/>
-						<fmt:message key="birhtdata"/> </br>
-						<input type="text" name="dataNascimento" placeholder="<fmt:message key="birhtdata.ph"/>"/> <br/>
+						<fmt:message key="birthdate"/> </br>
+						<input type="text" name="dataNascimento" placeholder="<fmt:message key="birthdate.ph"/>"/> <br/>
 						<input type="submit" name="enviar" value="<fmt:message key="register"/>" />
 					</fieldset>
 				</form>
