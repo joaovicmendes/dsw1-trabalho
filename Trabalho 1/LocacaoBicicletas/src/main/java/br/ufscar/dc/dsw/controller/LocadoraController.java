@@ -2,6 +2,7 @@ package br.ufscar.dc.dsw.controller;
 
 import br.ufscar.dc.dsw.dao.LocadoraDAO;
 import br.ufscar.dc.dsw.domain.Locadora;
+import br.ufscar.dc.dsw.util.Erro;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -27,15 +28,23 @@ public class LocadoraController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {           
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {           
         String action = request.getPathInfo();
         if (action == null) {
             action = "";
+        }
+        Locadora locadora = (Locadora) request.getSession().getAttribute("locadoraLogada");
+    	Erro erros = new Erro();    	
+    	if (locadora == null) {
+    		response.sendRedirect(request.getContextPath());
+    	} else {
+    		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/locadora/index.jsp");
+            dispatcher.forward(request, response);
         }
 
         try {

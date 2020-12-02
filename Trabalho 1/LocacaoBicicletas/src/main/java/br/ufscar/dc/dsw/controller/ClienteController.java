@@ -2,6 +2,7 @@ package br.ufscar.dc.dsw.controller;
 
 import br.ufscar.dc.dsw.dao.ClienteDAO;
 import br.ufscar.dc.dsw.domain.Cliente;
+import br.ufscar.dc.dsw.util.Erro;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -26,15 +27,23 @@ public class ClienteController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {           
-        String action = request.getPathInfo();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String action = request.getPathInfo();
         if (action == null) {
             action = "";
+        }
+        Cliente cliente = (Cliente) request.getSession().getAttribute("clienteLogado");
+    	Erro erros = new Erro();    	
+    	if (cliente == null) {
+    		response.sendRedirect(request.getContextPath());
+    	} else {
+    		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/cliente/index.jsp");
+            dispatcher.forward(request, response);
         }
 
         try {

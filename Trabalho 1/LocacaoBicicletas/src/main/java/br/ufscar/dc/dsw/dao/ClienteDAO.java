@@ -147,4 +147,30 @@ public class ClienteDAO extends GenericDAO {
         }
         return cliente;
     }
+
+    public Cliente getbyLogin(String email) {
+        Cliente cliente = null;
+        String sql = "SELECT * from Cliente WHERE email = ?";
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+            	String cpf = resultSet.getString("cpf");
+                String nome = resultSet.getString("nome");
+                String senha = resultSet.getString("senha");
+                String genero = resultSet.getString("genero");
+                String telefone = resultSet.getString("telefone");
+                LocalDate dataNascimento = LocalDate.parse(resultSet.getDate("dataNascimento").toString());
+                cliente = new Cliente(cpf, nome, email, senha, genero, telefone, dataNascimento);
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cliente;
+    }
 }
