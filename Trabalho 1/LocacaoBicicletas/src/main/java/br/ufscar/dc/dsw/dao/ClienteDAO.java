@@ -16,8 +16,8 @@ public class ClienteDAO extends GenericDAO {
 
     public void insert(Cliente cliente){
 
-        String sql = "INSERT INTO Cliente (cpf, nome, email, senha, genero, telefone, dataNascimento)";
-        sql += " VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Cliente (cpf, nome, email, senha, genero, telefone, dataNascimento, papel)";
+        sql += " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
         try{
             Connection conn = this.getConnection();
@@ -31,6 +31,7 @@ public class ClienteDAO extends GenericDAO {
             statement.setString(5, cliente.getGenero());
             statement.setString(6, cliente.getTelefone());
             statement.setDate(7, java.sql.Date.valueOf(cliente.getDataNascimento()));
+            statement.setString(8, cliente.getPapel());
             statement.executeUpdate();
 
             statement.close();
@@ -62,7 +63,8 @@ public class ClienteDAO extends GenericDAO {
                 String genero = resultSet.getString("genero");
                 String telefone = resultSet.getString("telefone");
                 LocalDate dataNascimento = LocalDate.parse(resultSet.getDate("dataNascimento").toString());
-                Cliente cliente = new Cliente(cpf, nome, email, senha, genero, telefone, dataNascimento);
+                String papel = resultSet.getString("papel");
+                Cliente cliente = new Cliente(cpf, nome, email, senha, genero, telefone, dataNascimento, papel);
                 listaClientes.add(cliente);
             }
 
@@ -94,7 +96,7 @@ public class ClienteDAO extends GenericDAO {
 
     public void update(Cliente cliente){
         String sql = "UPDATE Cliente SET nome = ?, email = ?, senha = ?";
-        sql += ", genero = ?, telefone = ?, dataNascimento = ? WHERE cpf = ?";
+        sql += ", genero = ?, telefone = ?, dataNascimento = ?, papel = ? WHERE cpf = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -106,7 +108,8 @@ public class ClienteDAO extends GenericDAO {
             statement.setString(4, cliente.getGenero());
             statement.setString(5, cliente.getTelefone());
             statement.setDate(6, java.sql.Date.valueOf(cliente.getDataNascimento()));
-            statement.setString(7, cliente.getCpf());
+            statement.setString(7, cliente.getPapel());
+            statement.setString(8, cliente.getCpf());
             statement.executeUpdate();
 
             statement.close();
@@ -136,7 +139,8 @@ public class ClienteDAO extends GenericDAO {
                 String genero = resultSet.getString("genero");
                 String telefone = resultSet.getString("telefone");
                 LocalDate dataNascimento = LocalDate.parse(resultSet.getDate("dataNascimento").toString());
-                cliente = new Cliente(cpf, nome, email, senha, genero, telefone, dataNascimento);
+                String papel = resultSet.getString("papel");
+                cliente = new Cliente(cpf, nome, email, senha, genero, telefone, dataNascimento, papel);
             }
 
             resultSet.close();
@@ -163,7 +167,8 @@ public class ClienteDAO extends GenericDAO {
                 String genero = resultSet.getString("genero");
                 String telefone = resultSet.getString("telefone");
                 LocalDate dataNascimento = LocalDate.parse(resultSet.getDate("dataNascimento").toString());
-                cliente = new Cliente(cpf, nome, email, senha, genero, telefone, dataNascimento);
+                String papel = resultSet.getString("papel");
+                cliente = new Cliente(cpf, nome, email, senha, genero, telefone, dataNascimento, papel);
             }
             resultSet.close();
             statement.close();

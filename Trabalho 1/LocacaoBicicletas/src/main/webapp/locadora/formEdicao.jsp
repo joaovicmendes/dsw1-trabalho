@@ -22,7 +22,7 @@
 					<a href="/<%=contextPath%>">
 						<fmt:message key="main_menu"/>
 					</a>
-					<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogado == null}">
+					<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogado == null && sessionScope.clienteLogado.admin}">
 						&nbsp;&nbsp;&nbsp;
 						<a href="/<%=contextPath%>/locadoras/cadastro">
 							<fmt:message key="rental_company_new"/>

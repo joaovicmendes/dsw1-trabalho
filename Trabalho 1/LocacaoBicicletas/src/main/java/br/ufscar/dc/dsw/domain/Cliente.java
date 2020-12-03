@@ -10,12 +10,13 @@ public class Cliente {
     private String genero;
     private String telefone;
     private LocalDate dataNascimento;
+    private String papel;
 
     public Cliente(String cpf) {
         this.setCpf(cpf);
     }
 
-    public Cliente(String cpf, String nome, String email, String senha, String genero, String telefone, LocalDate dataNascimento) {
+    public Cliente(String cpf, String nome, String email, String senha, String genero, String telefone, LocalDate dataNascimento, String papel) {
         this.setCpf(cpf);
         this.setNome(nome);
         this.setEmail(email);
@@ -23,6 +24,7 @@ public class Cliente {
         this.setGenero(genero);
         this.setTelefone(telefone);
         this.setDataNascimento(dataNascimento);
+        this.setPapel(papel);
     }
 
     public void setCpf(String cpf) {
@@ -79,5 +81,17 @@ public class Cliente {
 
     public LocalDate getDataNascimento() {
         return this.dataNascimento;
+    }
+
+    public void setPapel(String papel) {
+        this.papel = papel;
+    }
+
+    public String getPapel() {
+        return this.papel;
+    }
+
+    public Boolean getAdmin() {
+        return (this.getPapel().equals("ADMIN"));
     }
 }

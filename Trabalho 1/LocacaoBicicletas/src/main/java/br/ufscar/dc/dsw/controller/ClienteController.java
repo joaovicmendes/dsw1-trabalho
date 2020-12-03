@@ -92,6 +92,7 @@ public class ClienteController extends HttpServlet {
         String senha = request.getParameter("senha");
         String genero = request.getParameter("genero");
         String telefone = request.getParameter("telefone");
+        String papel = "USER";
         LocalDate dataNascimento = LocalDate.now();
         try {
             dataNascimento = LocalDate.parse(request.getParameter("dataNascimento"));
@@ -100,7 +101,7 @@ public class ClienteController extends HttpServlet {
             dataNascimento = LocalDate.now();
         }
 
-        Cliente cliente = new Cliente(cpf, nome, email, senha, genero, telefone, dataNascimento);
+        Cliente cliente = new Cliente(cpf, nome, email, senha, genero, telefone, dataNascimento, papel);
         dao.insert(cliente);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("clientes");
@@ -152,6 +153,8 @@ public class ClienteController extends HttpServlet {
             telefone = cliente.getTelefone();
         }
 
+        String papel = cliente.getPapel();
+
         LocalDate dataNascimento = cliente.getDataNascimento();
         try {
             dataNascimento = LocalDate.parse(request.getParameter("dataNascimento"));
@@ -160,7 +163,7 @@ public class ClienteController extends HttpServlet {
             dataNascimento = cliente.getDataNascimento();
         }
 
-        Cliente clienteAtualizado = new Cliente(cpf, nome, email, senha, genero, telefone, dataNascimento);
+        Cliente clienteAtualizado = new Cliente(cpf, nome, email, senha, genero, telefone, dataNascimento, papel);
         dao.update(clienteAtualizado);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("clientes");

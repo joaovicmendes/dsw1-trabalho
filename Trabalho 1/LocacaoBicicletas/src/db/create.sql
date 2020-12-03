@@ -10,6 +10,7 @@ create table Cliente(
     genero varchar(256) not null,
     telefone varchar(13) not null,
     dataNascimento date not null,
+    papel varchar(5) not null,
 
     primary key (cpf)
 );

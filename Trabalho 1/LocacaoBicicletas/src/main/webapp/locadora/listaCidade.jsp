@@ -22,7 +22,7 @@
 					<a href="/<%=contextPath%>">
 						<fmt:message key="main_menu"/>
 					</a>
-					<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogado == null}">
+					<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogado == null && sessionScope.clienteLogado.admin}">
 						&nbsp;&nbsp;&nbsp;
 						<a href="/<%=contextPath%>/locadoras/cadastro">
 							<fmt:message key="rental_company_new"/>
@@ -44,7 +44,7 @@
 						<th><fmt:message key="name"/></th>
 						<th><fmt:message key="email"/></th>
 						<th><fmt:message key="city"/></th>
-						<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogado == null}">
+						<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogado == null && sessionScope.clienteLogado.admin}">
 							<th><fmt:message key="actions"/></th>
 						</c:if>
 					</tr>
@@ -54,7 +54,7 @@
 							<td>${locadora.nome}</td>
 							<td>${locadora.email}</td>
 							<td>${locadora.cidade}</td>
-							<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogado == null}">
+							<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogado == null && sessionScope.clienteLogado.admin}">
 							<td>
 								<a href="/<%= contextPath%>/locadoras/edicao?cnpj=${locadora.cnpj}">
 									<fmt:message key="edition"/>

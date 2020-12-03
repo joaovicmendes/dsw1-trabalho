@@ -41,6 +41,7 @@
 						<th><fmt:message key="gender"/></th>
 						<th><fmt:message key="phone"/></th>
 		                <th><fmt:message key="birthdate"/></th>
+		                <th><fmt:message key="role"/></th>
 		                <th><fmt:message key="actions"/></th>
 					</tr>
 					<c:forEach var="cliente" items="${requestScope.listaClientes}">
@@ -52,6 +53,7 @@
 							<td>${cliente.genero}</td>
 		                    <td>${cliente.telefone}</td>
 		                    <td>${cliente.dataNascimento}</td>
+		                    <td>${cliente.papel}</td>
 							<td>
 								<a href="/<%= contextPath%>/clientes/edicao?cpf=${cliente.cpf}">
 									<fmt:message key="edition"/>
