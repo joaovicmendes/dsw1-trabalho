@@ -22,13 +22,15 @@
 					<a href="/<%=contextPath%>">
 						<fmt:message key="main_menu"/>
 					</a>
-					&nbsp;&nbsp;&nbsp;
-					<a href="/<%=contextPath%>/locadoras/cadastro">
-						<fmt:message key="rental_company_new"/>
-					</a>
+					<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogado == null}">
+						&nbsp;&nbsp;&nbsp;
+						<a href="/<%=contextPath%>/locadoras/cadastro">
+							<fmt:message key="rental_company_new"/>
+						</a>
+					</c:if>
 					&nbsp;&nbsp;&nbsp;
 					<a href="/<%=contextPath%>/locadoras/escolherCidade">
-						<fmt:message key="rental_company_show_all"/>
+						<fmt:message key="rental_company_show_by_city"/>
 					</a>
 				</h2>
 			</div>
@@ -41,17 +43,18 @@
 						<th><fmt:message key="cnpj"/></th>
 						<th><fmt:message key="name"/></th>
 						<th><fmt:message key="email"/></th>
-						<th><fmt:message key="pw"/></th>
 						<th><fmt:message key="city"/></th>
-		                <th><fmt:message key="actions"/></th>
+						<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogado == null}">
+							<th><fmt:message key="actions"/></th>
+						</c:if>
 					</tr>
 					<c:forEach var="locadora" items="${requestScope.listaLocadoras}">
 						<tr>
 							<td>${locadora.cnpj}</td>
 							<td>${locadora.nome}</td>
 							<td>${locadora.email}</td>
-							<td>${locadora.senha}</td>
 							<td>${locadora.cidade}</td>
+							<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogado == null}">
 							<td>
 								<a href="/<%= contextPath%>/locadoras/edicao?cnpj=${locadora.cnpj}">
 									<fmt:message key="edition"/>
@@ -64,6 +67,7 @@
 									<fmt:message key="removal"/>
 								</a>
 							</td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</table>

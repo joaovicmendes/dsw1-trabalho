@@ -27,7 +27,7 @@
         </div>
         <div class="box cliente">     
             <h2>Login</h2>
-            <form method="post" action="index.jsp">
+            <form method="post" action="login">
                 
                 <div class="login-form">
                     <label for="cliente_login">Email</label>
@@ -43,7 +43,7 @@
 
         <div class="box locadora" style="border-left: 5px solid rgb(255, 77, 70); display: none;">
             <h2>Login</h2>
-            <form method="post" action="index.jsp">
+            <form method="post" action="login">
                 
                 <div class="login-form">
                     <label for="locadora_login">Email</label>

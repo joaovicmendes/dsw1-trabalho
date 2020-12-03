@@ -37,14 +37,14 @@ public class ClienteController extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        Cliente cliente = (Cliente) request.getSession().getAttribute("clienteLogado");
-    	Erro erros = new Erro();    	
-    	if (cliente == null) {
-    		response.sendRedirect(request.getContextPath());
-    	} else {
-    		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/cliente/index.jsp");
-            dispatcher.forward(request, response);
-        }
+        // Cliente cliente = (Cliente) request.getSession().getAttribute("clienteLogado");
+    	// Erro erros = new Erro();    	
+    	// if (cliente == null) {
+    	// 	response.sendRedirect(request.getContextPath());
+    	// } else {
+    	// 	RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/cliente/index.jsp");
+        //     dispatcher.forward(request, response);
+        // }
 
         try {
             switch (action) {
