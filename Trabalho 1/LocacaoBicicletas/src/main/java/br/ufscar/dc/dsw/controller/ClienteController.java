@@ -126,7 +126,7 @@ public class ClienteController extends HttpServlet {
         Cliente cliente = new Cliente(cpf, nome, email, senha, genero, telefone, dataNascimento, papel);
         dao.insert(cliente);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("clientes");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
         dispatcher.forward(request, response);
     }
 

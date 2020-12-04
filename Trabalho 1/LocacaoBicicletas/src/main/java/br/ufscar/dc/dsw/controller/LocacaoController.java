@@ -63,7 +63,6 @@ public class LocacaoController extends HttpServlet {
         Erro erros = new Erro();
         Cliente clienteLogado = (Cliente) request.getSession().getAttribute("clienteLogado");
         Locadora locadoraLogada = (Locadora) request.getSession().getAttribute("locadoraLogada");
-        System.out.println("CHEGOUUUUUUU##########");
         if (clienteLogado == null && locadoraLogada == null) {
             erros.add("Precisa estar logado para acessar essa página.");
 

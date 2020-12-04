@@ -5,9 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Locadora;
@@ -31,7 +32,9 @@ public class LocacaoDAO extends GenericDAO {
             while (resultSet.next()) {
                 String cnpj = resultSet.getString("cnpjLocadora");
                 String cpf = resultSet.getString("cpfCliente");
-                LocalDateTime data = resultSet.getTimestamp("dataReserva").toLocalDateTime();
+                Timestamp t = resultSet.getTimestamp("dataReserva");
+                System.out.println(t);
+                Date data = new Date(t.getTime());
 
                 // Recuperando cliente e locadora a partir da chave estrangeira
                 ClienteDAO clienteDAO = new ClienteDAO();
@@ -53,7 +56,7 @@ public class LocacaoDAO extends GenericDAO {
         return listaLocacao;
     }
 
-    public Locacao get(String cpf, String cnpj, LocalDateTime dataReserva) {
+    public Locacao get(String cpf, String cnpj, Date dataReserva) {
         Locacao locacao = null;
         
         String sql = "SELECT * from Locacao where cnpj = ?, cpf = ?, dataReserva = ?";
@@ -64,7 +67,7 @@ public class LocacaoDAO extends GenericDAO {
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, cnpj);
             statement.setString(2, cpf);
-            statement.setTimestamp(3, java.sql.Timestamp.valueOf(dataReserva));
+            statement.setTimestamp(3, new Timestamp(dataReserva.getTime()));
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -105,7 +108,7 @@ public class LocacaoDAO extends GenericDAO {
             // Convertendo resultados para a classe interna Locacao
             while (resultSet.next()) {
                 String cnpj = resultSet.getString("cnpjLocadora");
-                LocalDateTime data = resultSet.getTimestamp("dataReserva").toLocalDateTime();
+                Date data = new Date(resultSet.getTimestamp("dataReserva").getTime());
 
                 // Recuperando cliente e locadora a partir da chave estrangeira
                 ClienteDAO clienteDAO = new ClienteDAO();
@@ -143,7 +146,7 @@ public class LocacaoDAO extends GenericDAO {
             // Convertendo resultados para a classe interna Locacao
             while (resultSet.next()) {
                 String cpf = resultSet.getString("cpfCliente");
-                LocalDateTime data = resultSet.getTimestamp("dataReserva").toLocalDateTime();
+                Date data = new Date(resultSet.getTimestamp("dataReserva").getTime());
 
                 // Recuperando cliente e locadora a partir da chave estrangeira
                 ClienteDAO clienteDAO = new ClienteDAO();

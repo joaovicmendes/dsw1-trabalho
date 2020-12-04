@@ -1,13 +1,13 @@
 package br.ufscar.dc.dsw.domain;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Locacao {
     private Cliente c;
     private Locadora l;
-    private LocalDateTime dataReserva;
+    private Date dataReserva;
 
-    public Locacao(Cliente c, Locadora l,  LocalDateTime dataReserva) {
+    public Locacao(Cliente c, Locadora l,  Date dataReserva) {
         this.setCliente(c);
         this.setLocadora(l);
         this.setDataReserva(dataReserva);
@@ -29,11 +29,11 @@ public class Locacao {
         return this.l;
     }
 
-    public void setDataReserva(LocalDateTime dataReserva) {
+    public void setDataReserva(Date dataReserva) {
         this.dataReserva = dataReserva;
     }
 
-    public LocalDateTime getDataReserva() {
+    public Date getDataReserva() {
         return this.dataReserva;
     }
 }
