@@ -55,7 +55,7 @@ public class LoginController extends HttpServlet {
 			}
 		}
 		else if(request.getParameter("locadoraOK") != null && 
-		        request.getParameter("clienteOK") != "locadora_login=&locadora_senha="){
+		        request.getParameter("locadoraOK") != "locadora_login=&locadora_senha="){
 					
             String login = request.getParameter("locadora_login");
 			String senha = request.getParameter("locadora_senha");

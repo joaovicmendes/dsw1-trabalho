@@ -13,13 +13,13 @@
 	        </title>
 	    </head>
 	    <body>
-			<c:if test="${sessionScope.clienteLogado == null && sessionScope.locadoraLogado == null}">
+			<c:if test="${sessionScope.clienteLogado == null && sessionScope.locadoraLogada == null}">
 				Olá, Convidado.
 			</c:if>
-			<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogado == null}">
+			<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogada == null}">
 				Olá, ${sessionScope.clienteLogado.nome}.
 			</c:if>
-			<c:if test="${sessionScope.clienteLogado == null && sessionScope.locadoraLogado != null}">
+			<c:if test="${sessionScope.clienteLogado == null && sessionScope.locadoraLogada != null}">
 				Olá, ${sessionScope.locadoraLogada.nome}.
 			</c:if>
 			<br>
@@ -27,20 +27,20 @@
 	        	Listar Locadoras
 			</a>
 			<br>
-			<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogado == null && sessionScope.clienteLogado.admin}">
+			<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogada == null && sessionScope.clienteLogado.admin}">
 				<a href="clientes">
 					Listar Clientes
 				</a>
 				<br>
 			</c:if>
-			<c:if test="${sessionScope.clienteLogado != null || sessionScope.locadoraLogado != null}">
+			<c:if test="${sessionScope.clienteLogado != null || sessionScope.locadoraLogada != null}">
 				<a href="locacoes">
 					Minhas Locações
 				</a>
 				<br>
 			</c:if>
 			<c:choose>
-			<c:when test="${sessionScope.clienteLogado == null && sessionScope.locadoraLogado == null}">
+			<c:when test="${sessionScope.clienteLogado == null && sessionScope.locadoraLogada == null}">
 				<a href="login.jsp">
 					Login
 				</a>
