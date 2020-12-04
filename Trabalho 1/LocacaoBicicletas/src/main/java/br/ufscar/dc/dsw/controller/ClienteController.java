@@ -115,8 +115,18 @@ public class ClienteController extends HttpServlet {
             dataNascimento = LocalDate.now();
         }
 
-        Cliente cliente = new Cliente(cpf, nome, email, senha, genero, telefone, dataNascimento, papel);
-        dao.insert(cliente);
+        try {
+            Cliente cliente = new Cliente(cpf, nome, email, senha, genero, telefone, dataNascimento, papel);
+            dao.insert(cliente);
+        } catch (Exception e) {
+            Erro erros = new Erro();
+            erros.add("Erro nos dados preenchidos.");
+
+            request.setAttribute("mensagens", erros);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/cliente/formCadastro.jsp");
+            rd.forward(request, response);
+        }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
         dispatcher.forward(request, response);
@@ -244,7 +254,16 @@ public class ClienteController extends HttpServlet {
         }
 
         Cliente clienteAtualizado = new Cliente(cpf, nome, email, senha, genero, telefone, dataNascimento, papel);
-        dao.update(clienteAtualizado);
+        try {
+            dao.update(clienteAtualizado);
+        } catch (Exception e) {
+            erros.add("Erro nos dados preenchidos.");
+
+            request.setAttribute("mensagens", erros);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/cliente/formEdicao.jsp");
+            rd.forward(request, response);
+        }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("clientes");
         dispatcher.forward(request, response);

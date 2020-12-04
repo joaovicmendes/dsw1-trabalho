@@ -24,8 +24,8 @@ public class IndexController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String URL = "/index.jsp";
-		RequestDispatcher rd = request.getRequestDispatcher(URL);
-		rd.forward(request, response);
+      String URL = "/index.jsp";
+      RequestDispatcher rd = request.getRequestDispatcher(URL);
+      rd.forward(request, response);
     }
 }

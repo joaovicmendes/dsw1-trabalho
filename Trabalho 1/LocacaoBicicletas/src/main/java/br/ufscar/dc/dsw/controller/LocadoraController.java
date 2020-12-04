@@ -95,8 +95,19 @@ public class LocadoraController extends HttpServlet {
     }
 
     private void listaCidade(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Locadora> listaLocadoras = null;
         String cidade = request.getParameter("cidade");
-        List<Locadora> listaLocadoras = dao.getAllCidade(cidade);
+        try {
+            listaLocadoras = dao.getAllCidade(cidade);
+        } catch (Exception e) {
+            Erro erros = new Erro();
+            erros.add("Erro nos dados preenchidos.");
+
+            request.setAttribute("mensagens", erros);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/locadora/escolherCidade.jsp");
+            rd.forward(request, response);
+        }
         request.setAttribute("listaLocadoras", listaLocadoras);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/locadora/listaCidade.jsp");
         dispatcher.forward(request, response);
@@ -116,7 +127,17 @@ public class LocadoraController extends HttpServlet {
         String cidade = request.getParameter("cidade");
         
         Locadora locadora = new Locadora(cnpj, nome, email, senha, cidade);
-        dao.insert(locadora);
+        try {
+            dao.insert(locadora);
+        } catch (Exception e) {
+            Erro erros = new Erro();
+            erros.add("Erro nos dados preenchidos.");
+
+            request.setAttribute("mensagens", erros);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/locadora/formCadastro.jsp");
+            rd.forward(request, response);
+        }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("locadoras");
         dispatcher.forward(request, response);
@@ -229,7 +250,16 @@ public class LocadoraController extends HttpServlet {
         }
 
         Locadora locadoraAtualizada = new Locadora(cnpj, nome, email, senha, cidade);
-        dao.update(locadoraAtualizada);
+        try {
+            dao.update(locadoraAtualizada);
+        } catch (Exception e) {
+            erros.add("Erro nos dados preenchidos.");
+
+            request.setAttribute("mensagens", erros);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/locadora/formEdicao.jsp");
+            rd.forward(request, response);
+        }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("locadoras");
         dispatcher.forward(request, response);
