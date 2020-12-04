@@ -29,8 +29,8 @@ public class LocacaoDAO extends GenericDAO {
 
             // Convertendo resultados para a classe interna Locacao
             while (resultSet.next()) {
-                String cnpj = resultSet.getString("cnpj");
-                String cpf = resultSet.getString("nome");
+                String cnpj = resultSet.getString("cnpjLocadora");
+                String cpf = resultSet.getString("cpfCliente");
                 LocalDateTime data = resultSet.getTimestamp("dataReserva").toLocalDateTime();
 
                 // Recuperando cliente e locadora a partir da chave estrangeira
@@ -87,5 +87,81 @@ public class LocacaoDAO extends GenericDAO {
             throw new RuntimeException(e);
         }
         return locacao;
+    }
+
+    public List<Locacao> getByCpf(String cpf) {
+        List<Locacao> listaLocacao = new ArrayList<>();
+        
+        String sql = "SELECT * from Locacao where cpfCliente = ?";
+
+        try {
+            // Conectando no banco e realizando consulta
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, cpf);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            // Convertendo resultados para a classe interna Locacao
+            while (resultSet.next()) {
+                String cnpj = resultSet.getString("cnpjLocadora");
+                LocalDateTime data = resultSet.getTimestamp("dataReserva").toLocalDateTime();
+
+                // Recuperando cliente e locadora a partir da chave estrangeira
+                ClienteDAO clienteDAO = new ClienteDAO();
+                LocadoraDAO locadoraDAO = new LocadoraDAO();
+
+                Cliente c = clienteDAO.get(cpf);
+                Locadora l = locadoraDAO.get(cnpj);
+
+                Locacao locacao = new Locacao(c, l, data);
+                listaLocacao.add(locacao);
+            }
+
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listaLocacao;
+    }
+
+    public List<Locacao> getByCnpj(String cnpj) {
+        List<Locacao> listaLocacao = new ArrayList<>();
+        
+        String sql = "SELECT * from Locacao where cnpjLocadora = ?";
+
+        try {
+            // Conectando no banco e realizando consulta
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, cnpj);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            // Convertendo resultados para a classe interna Locacao
+            while (resultSet.next()) {
+                String cpf = resultSet.getString("cpfCliente");
+                LocalDateTime data = resultSet.getTimestamp("dataReserva").toLocalDateTime();
+
+                // Recuperando cliente e locadora a partir da chave estrangeira
+                ClienteDAO clienteDAO = new ClienteDAO();
+                LocadoraDAO locadoraDAO = new LocadoraDAO();
+
+                Cliente c = clienteDAO.get(cpf);
+                Locadora l = locadoraDAO.get(cnpj);
+
+                Locacao locacao = new Locacao(c, l, data);
+                listaLocacao.add(locacao);
+            }
+
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listaLocacao;
     }
 }

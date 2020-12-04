@@ -34,7 +34,7 @@
 				<br>
 			</c:if>
 			<c:if test="${sessionScope.clienteLogado != null || sessionScope.locadoraLogado != null}">
-				<a href="#">
+				<a href="locacoes">
 					Minhas Locações
 				</a>
 				<br>
