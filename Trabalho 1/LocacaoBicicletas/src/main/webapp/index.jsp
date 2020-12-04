@@ -27,6 +27,12 @@
 	        	Listar Locadoras
 			</a>
 			<br>
+			<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogado == null && sessionScope.clienteLogado.admin}">
+				<a href="clientes">
+					Listar Clientes
+				</a>
+				<br>
+			</c:if>
 			<c:if test="${sessionScope.clienteLogado != null || sessionScope.locadoraLogado != null}">
 				<a href="#">
 					Minhas Locações
@@ -40,7 +46,11 @@
 				</a>
 				<br>
 				<a href="clientes/cadastro">
-					Cadastrar-se
+					Cadastrar como Cliente
+				</a>
+				<br>
+				<a href="locadoras/cadastro">
+					Cadastrar como Locadora
 				</a>
 				<br>
 			</c:when>

@@ -33,7 +33,7 @@ public class ClienteController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    String action = request.getPathInfo();
+        String action = request.getPathInfo();
         if (action == null) {
             action = "";
         }
@@ -73,6 +73,28 @@ public class ClienteController extends HttpServlet {
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Erro erros = new Erro();
+        Cliente clienteLogado = (Cliente) request.getSession().getAttribute("clienteLogado");
+        
+        if (clienteLogado == null) {
+            erros.add("Precisa estar logado para acessar essa página.");
+
+            request.setAttribute("mensagens", erros);
+            String URL = "/login.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+		    rd.forward(request, response);
+            return;
+        } else if (!clienteLogado.getPapel().equals("ADMIN")) {
+            erros.add("Não possui permissão de acesso.");
+            erros.add("Apenas [ADMIN] pode acessar essa página.");
+
+            request.setAttribute("mensagens", erros);
+            String URL = "/noAuth.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+		    rd.forward(request, response);
+            return;
+        }
+        
         List<Cliente> listaClientes = dao.getAll();
         request.setAttribute("listaClientes", listaClientes);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/cliente/lista.jsp");
@@ -109,6 +131,28 @@ public class ClienteController extends HttpServlet {
     }
 
     private void remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Erro erros = new Erro();
+        Cliente clienteLogado = (Cliente) request.getSession().getAttribute("clienteLogado");
+        
+        if (clienteLogado == null) {
+            erros.add("Precisa estar logado para acessar essa página.");
+
+            request.setAttribute("mensagens", erros);
+            String URL = "/login.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+		    rd.forward(request, response);
+            return;
+        } else if (!clienteLogado.getPapel().equals("ADMIN")) {
+            erros.add("Não possui permissão de acesso.");
+            erros.add("Apenas [ADMIN] pode acessar essa página.");
+
+            request.setAttribute("mensagens", erros);
+            String URL = "/noAuth.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+		    rd.forward(request, response);
+            return;
+        }
+        
         String cpf = request.getParameter("cpf");
         Cliente cliente = dao.get(cpf);
         dao.delete(cliente);
@@ -117,6 +161,28 @@ public class ClienteController extends HttpServlet {
     }
 
     private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Erro erros = new Erro();
+        Cliente clienteLogado = (Cliente) request.getSession().getAttribute("clienteLogado");
+        
+        if (clienteLogado == null) {
+            erros.add("Precisa estar logado para acessar essa página.");
+
+            request.setAttribute("mensagens", erros);
+            String URL = "/login.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+		    rd.forward(request, response);
+            return;
+        } else if (!clienteLogado.getPapel().equals("ADMIN")) {
+            erros.add("Não possui permissão de acesso.");
+            erros.add("Apenas [ADMIN] pode acessar essa página.");
+
+            request.setAttribute("mensagens", erros);
+            String URL = "/noAuth.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+		    rd.forward(request, response);
+            return;
+        }
+        
         request.setCharacterEncoding("UTF-8");
         String cpf = request.getParameter("cpf");
         Cliente cliente = dao.get(cpf);
@@ -126,6 +192,28 @@ public class ClienteController extends HttpServlet {
     }
 
     private void atualize(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Erro erros = new Erro();
+        Cliente clienteLogado = (Cliente) request.getSession().getAttribute("clienteLogado");
+        
+        if (clienteLogado == null) {
+            erros.add("Precisa estar logado para acessar essa página.");
+
+            request.setAttribute("mensagens", erros);
+            String URL = "/login.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+		    rd.forward(request, response);
+            return;
+        } else if (!clienteLogado.getPapel().equals("ADMIN")) {
+            erros.add("Não possui permissão de acesso.");
+            erros.add("Apenas [ADMIN] pode acessar essa página.");
+
+            request.setAttribute("mensagens", erros);
+            String URL = "/noAuth.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+		    rd.forward(request, response);
+            return;
+        }
+        
         request.setCharacterEncoding("UTF-8");
 
         String cpf = request.getParameter("cpf");

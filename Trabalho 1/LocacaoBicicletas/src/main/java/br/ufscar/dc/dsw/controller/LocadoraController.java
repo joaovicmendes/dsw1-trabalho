@@ -2,6 +2,7 @@ package br.ufscar.dc.dsw.controller;
 
 import br.ufscar.dc.dsw.dao.LocadoraDAO;
 import br.ufscar.dc.dsw.domain.Locadora;
+import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.util.Erro;
 import java.io.IOException;
 import java.util.HashMap;
@@ -130,6 +131,28 @@ public class LocadoraController extends HttpServlet {
     }
 
     private void remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Erro erros = new Erro();
+        Cliente clienteLogado = (Cliente) request.getSession().getAttribute("clienteLogado");
+        
+        if (clienteLogado == null) {
+            erros.add("Precisa estar logado para acessar essa página.");
+
+            request.setAttribute("mensagens", erros);
+            String URL = "/login.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+		    rd.forward(request, response);
+            return;
+        } else if (!clienteLogado.getPapel().equals("ADMIN")) {
+            erros.add("Não possui permissão de acesso.");
+            erros.add("Apenas [ADMIN] pode acessar essa página.");
+
+            request.setAttribute("mensagens", erros);
+            String URL = "/noAuth.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+		    rd.forward(request, response);
+            return;
+        }
+        
         String cnpj = request.getParameter("cnpj");
         Locadora locadora = dao.get(cnpj);
         dao.delete(locadora);
@@ -138,6 +161,28 @@ public class LocadoraController extends HttpServlet {
     }
 
     private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Erro erros = new Erro();
+        Cliente clienteLogado = (Cliente) request.getSession().getAttribute("clienteLogado");
+        
+        if (clienteLogado == null) {
+            erros.add("Precisa estar logado para acessar essa página.");
+
+            request.setAttribute("mensagens", erros);
+            String URL = "/login.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+		    rd.forward(request, response);
+            return;
+        } else if (!clienteLogado.getPapel().equals("ADMIN")) {
+            erros.add("Não possui permissão de acesso.");
+            erros.add("Apenas [ADMIN] pode acessar essa página.");
+
+            request.setAttribute("mensagens", erros);
+            String URL = "/noAuth.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+		    rd.forward(request, response);
+            return;
+        }
+        
         request.setCharacterEncoding("UTF-8");
         String cnpj = request.getParameter("cnpj");
         Locadora locadora = dao.get(cnpj);
@@ -147,6 +192,28 @@ public class LocadoraController extends HttpServlet {
     }
 
     private void atualize(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Erro erros = new Erro();
+        Cliente clienteLogado = (Cliente) request.getSession().getAttribute("clienteLogado");
+        
+        if (clienteLogado == null) {
+            erros.add("Precisa estar logado para acessar essa página.");
+
+            request.setAttribute("mensagens", erros);
+            String URL = "/login.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+		    rd.forward(request, response);
+            return;
+        } else if (!clienteLogado.getPapel().equals("ADMIN")) {
+            erros.add("Não possui permissão de acesso.");
+            erros.add("Apenas [ADMIN] pode acessar essa página.");
+
+            request.setAttribute("mensagens", erros);
+            String URL = "/noAuth.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+		    rd.forward(request, response);
+            return;
+        }
+        
         request.setCharacterEncoding("UTF-8");
 
         String cnpj = request.getParameter("cnpj");
