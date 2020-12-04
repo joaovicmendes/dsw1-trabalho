@@ -39,14 +39,6 @@ public class LocadoraController extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        // Locadora locadora = (Locadora) request.getSession().getAttribute("locadoraLogada");
-    	// Erro erros = new Erro();    	
-    	// if (locadora == null) {
-    	// 	response.sendRedirect(request.getContextPath());
-    	// } else {
-    	// 	RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/locadora/index.jsp");
-        //     dispatcher.forward(request, response);
-        // }
 
         try {
             switch (action) {
