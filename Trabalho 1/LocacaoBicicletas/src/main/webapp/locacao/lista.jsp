@@ -7,7 +7,7 @@
 	<fmt:bundle basename="msgs">
 		<head>
 			<title>
-				Locações
+				<fmt:message key="leases"/>
 			</title>
 		</head>
 		<body>
@@ -16,7 +16,7 @@
 			%>
 			<div align="center">
 				<h1>
-					Locações
+					<fmt:message key="leases"/>
 				</h1>
 				<h2>
 					<a href="/<%=contextPath%>">
@@ -24,7 +24,7 @@
 					</a>
 					&nbsp;&nbsp;&nbsp;
 					<a href="/<%=contextPath%>/locacoes/locacao">
-						Nova Locação
+						<fmt:message key="new_lease"/>
 					</a>
 				</h2>
 			</div>
@@ -32,12 +32,12 @@
 				<c:if test="${requestScope.listaLocacoes != null}">
 				<table border="1">
 					<caption>
-						Minhas Locações
+						<fmt:message key="my_leases"/>
 					</caption>
 					<tr>
-						<th>CPF Cliente</th>
-						<th>CNPJ Locadora</th>
-						<th>Data Reserva</th>
+						<th><fmt:message key="client_cpf"/></th>
+						<th><fmt:message key="client_cnpj"/></th>
+						<th><fmt:message key="date"/></th>
 					</tr>
 					<c:forEach var="locacao" items="${requestScope.listaLocacoes}">
 						<tr>
@@ -49,7 +49,7 @@
 				</table>
 				</c:if>
 				<c:if test="${requestScope.listaLocacoes == null}">
-					Sem locações disponíveis
+					<fmt:message key="no_leases"/>
 				</c:if>
 			</div>
 		</body>

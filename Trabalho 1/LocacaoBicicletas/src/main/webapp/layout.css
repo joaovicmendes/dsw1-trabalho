@@ -52,7 +52,7 @@ input:focus {
   box-shadow: 0 0 10px rgba(0,0,0,.1);
   outline: 0;
 }
-#password {
+.password {
   top:-1px;
   margin-bottom: 5px;
 }
@@ -72,26 +72,26 @@ input:focus {
   position: relative;
   left: 0;
 }
-#submit {
+.submit {
   padding: 0;
   width: 75px;
   background: rgb(224, 224, 224);
   color: rgb(126, 126, 126);
   border-color: rgb(202, 202, 202);
 }
-#submit:hover {
+.submit:hover {
   color: rgb(233, 233, 233);
   background: rgb(66, 66, 66);
   border-color: rgb(66, 66, 66);
 }
-#submit ~ a {
+.submit ~ a {
   display: block;
   float: left;
   width: 120px;
   text-decoration: none;
   color: #666;
 }
-#submit ~ a:hover {
+.submit ~ a:hover {
   text-decoration: underline;
 }
 

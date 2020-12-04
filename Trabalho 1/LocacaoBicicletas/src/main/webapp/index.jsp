@@ -14,28 +14,28 @@
 	    </head>
 	    <body>
 			<c:if test="${sessionScope.clienteLogado == null && sessionScope.locadoraLogada == null}">
-				Olá, Convidado.
+				<fmt:message key="index_hello"/>
 			</c:if>
 			<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogada == null}">
-				Olá, ${sessionScope.clienteLogado.nome}.
+				<fmt:message key="index_hello_logged"/> ${sessionScope.clienteLogado.nome}.
 			</c:if>
 			<c:if test="${sessionScope.clienteLogado == null && sessionScope.locadoraLogada != null}">
-				Olá, ${sessionScope.locadoraLogada.nome}.
+				<fmt:message key="index_hello_logged"/>  ${sessionScope.locadoraLogada.nome}.
 			</c:if>
 			<br>
 			<a href="locadoras">
-	        	Listar Locadoras
+	        	<fmt:message key="rental_company_list"/> 
 			</a>
 			<br>
 			<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogada == null && sessionScope.clienteLogado.admin}">
 				<a href="clientes">
-					Listar Clientes
+					<fmt:message key="client_list"/> 
 				</a>
 				<br>
 			</c:if>
 			<c:if test="${sessionScope.clienteLogado != null || sessionScope.locadoraLogada != null}">
 				<a href="locacoes">
-					Minhas Locações
+					<fmt:message key="my_leases"/> 
 				</a>
 				<br>
 			</c:if>
@@ -46,17 +46,17 @@
 				</a>
 				<br>
 				<a href="clientes/cadastro">
-					Cadastrar como Cliente
+					<fmt:message key="client_registration"/> 
 				</a>
 				<br>
 				<a href="locadoras/cadastro">
-					Cadastrar como Locadora
+					<fmt:message key="rental_company_registration"/> 
 				</a>
 				<br>
 			</c:when>
 			<c:otherwise>
 				<a href="${pageContext.request.contextPath}/logout.jsp">
-					Sair
+					<fmt:message key="log_out"/> 
 				</a>
 				<br>
 			</c:otherwise>

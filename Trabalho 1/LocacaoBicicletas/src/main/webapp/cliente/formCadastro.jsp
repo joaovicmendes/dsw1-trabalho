@@ -7,7 +7,7 @@
 	<fmt:bundle basename="msgs">
 		<head>
 			<title>
-				<fmt:message key="client_managing"/>
+				<fmt:message key="client_registration"/>
 			</title>
 		</head>
 		<body>
@@ -25,16 +25,17 @@
         	</c:if>
 			<div align="center">
 				<h1>
-					<fmt:message key="client_managing"/>
+					<fmt:message key="client_registration"/>
 				</h1>
 				<h2>
 					<a href="/<%=contextPath%>">
 						<fmt:message key="main_menu"/>
-					</a>
+					</a><!--
 					&nbsp;&nbsp;&nbsp;
 					<a href="/<%=contextPath%>/clientes/cadastro">
 						<fmt:message key="client_new"/>
 					</a>
+					-->
 				</h2>
 			</div>
 			<div>

@@ -7,7 +7,7 @@
 	<fmt:bundle basename="msgs">
 		<head>
 			<title>
-				<fmt:message key="rental_company_managing"/>
+				<fmt:message key="rental_company_registration"/>
 			</title>
 		</head>
 		<body>
@@ -25,7 +25,7 @@
         	</c:if>
 			<div align="center">
 				<h1>
-					<fmt:message key="rental_company_managing"/>
+					<fmt:message key="rental_company_registration"/>
 				</h1>
 				<h2>
 					<a href="/<%=contextPath%>">

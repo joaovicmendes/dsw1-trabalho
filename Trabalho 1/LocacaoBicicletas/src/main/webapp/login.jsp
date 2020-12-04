@@ -1,9 +1,11 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
+    <fmt:bundle basename="msgs">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Autenticação de Usuário</title>
@@ -23,7 +25,8 @@
             </div>
         </c:if>
         <div style="text-align:center;">
-            <button class="btn" onclick="toggleLoader()">Cliente</button>
+            <button class="btn cliente" onclick="toggleLoader()"> <fmt:message key="client"/> </button>
+            <button class="btn locadora" style="display: none;" onclick="toggleLoader()"> <fmt:message key="rental_company"/> </button>
         </div>
         <div class="box cliente">     
             <h2>Login</h2>
@@ -34,10 +37,10 @@
                     <input type="text" name="cliente_login" value="${param.login}" placeholder="Email"/>
                     
                     <label for="cliente_password">Password</label>
-                    <input type="password" name="cliente_senha" id="password" placeholder="Password">
+                    <input type="password" name="cliente_senha" class="password" placeholder=<fmt:message key="str_pw"/>>
                 </div>
                 
-                <input type="submit" id="submit" style="float:right" name="clienteOK" value="Entrar">
+                <input type="submit" class="submit" style="float:right" name="clienteOK" value=<fmt:message key="str_login"/>>
             </form>
         </div>
 
@@ -49,13 +52,14 @@
                     <label for="locadora_login">Email</label>
                     <input type="text" name="locadora_login" value="${param.login}" placeholder="Email"/>
                     
-                    <label for="locadora_password">Password</label>
-                    <input type="password" name="locadora_senha" id="password" placeholder="Password">
+                    <label for="locadora_password"><fmt:message key="pw"/> </label>
+                    <input type="password" name="locadora_senha" class="password" placeholder=<fmt:message key="str_pw"/>>
                 </div>
                 
-                <input type="submit" id="submit" style="float:right" name="locadoraOK" value="Entrar">
+                <input type="submit" class="submit" style="float:right" name="locadoraOK" value=<fmt:message key="str_login"/>>
             </form>
         </div>
 
     </body>
+    </fmt:bundle>
 </html>
