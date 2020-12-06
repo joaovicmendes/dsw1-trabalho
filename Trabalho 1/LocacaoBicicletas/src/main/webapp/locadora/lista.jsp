@@ -28,11 +28,20 @@
 							<fmt:message key="rental_company_new"/>
 						</a>
 					</c:if>
-					&nbsp;&nbsp;&nbsp;
-					<a href="/<%=contextPath%>/locadoras/escolherCidade">
-						<fmt:message key="rental_company_show_by_city"/>
-					</a>
 				</h2>
+			</div>
+			<div align="center">
+				<p>
+				<form action="/<%= contextPath%>/locadoras/listaCidade" method="get">
+					<fmt:message key="rental_company_show_by_city"/>: 
+					<select name="cidade">
+						<c:forEach var="cidade" items="${requestScope.listaCidades}">	
+							<option value ="${cidade}">${cidade}</option>
+						</c:forEach>
+					</select>
+					<input type="submit" value="<fmt:message key="choose"/>">
+				</p>
+				</form>
 			</div>
 			<div align="center">
 				<table border="1">

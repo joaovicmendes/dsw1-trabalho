@@ -57,9 +57,6 @@ public class LocadoraController extends HttpServlet {
                 case "/atualizacao":
                     atualize(request, response);
                     break;
-                case "/escolherCidade":
-                    escolherCidade(request, response);
-                    break;
                 case "/listaCidade":
                     listaCidade(request, response);
                     break;
@@ -75,12 +72,7 @@ public class LocadoraController extends HttpServlet {
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Locadora> listaLocadoras = dao.getAll();
         request.setAttribute("listaLocadoras", listaLocadoras);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/locadora/lista.jsp");
-        dispatcher.forward(request, response);
-    }
 
-    private void escolherCidade(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Locadora> listaLocadoras = dao.getAll();
         Set<String> listaCidades = new HashSet<String>();
 
         for (int i = 0; i < listaLocadoras.size(); i++) {
@@ -90,7 +82,8 @@ public class LocadoraController extends HttpServlet {
             }
         }
         request.setAttribute("listaCidades", listaCidades);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/locadora/escolherCidade.jsp");
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/locadora/lista.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -105,7 +98,7 @@ public class LocadoraController extends HttpServlet {
 
             request.setAttribute("mensagens", erros);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/locadora/escolherCidade.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/locadora/lista.jsp");
             rd.forward(request, response);
         }
         request.setAttribute("listaLocadoras", listaLocadoras);

@@ -36,13 +36,17 @@
 					</caption>
 					<tr>
 						<th><fmt:message key="client_cpf"/></th>
-						<th><fmt:message key="client_cnpj"/></th>
+						<th><fmt:message key="client_name"/></th>
+						<th><fmt:message key="rental_company_cnpj"/></th>
+						<th><fmt:message key="rental_company_name"/></th>
 						<th><fmt:message key="date"/></th>
 					</tr>
 					<c:forEach var="locacao" items="${requestScope.listaLocacoes}">
 						<tr>
 							<td>${locacao.cliente.cpf}</td>
+							<td>${locacao.cliente.nome}</td>
 							<td>${locacao.locadora.cnpj}</td>
+							<td>${locacao.locadora.nome}</td>
 							<td>${locacao.dataReserva}</td>
 						</tr>
 					</c:forEach>
