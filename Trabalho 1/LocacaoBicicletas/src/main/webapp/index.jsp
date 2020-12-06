@@ -13,54 +13,56 @@
 	        </title>
 	    </head>
 	    <body>
-			<c:if test="${sessionScope.clienteLogado == null && sessionScope.locadoraLogada == null}">
-				<fmt:message key="index_hello"/>
-			</c:if>
-			<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogada == null}">
-				<fmt:message key="index_hello_logged"/> ${sessionScope.clienteLogado.nome}.
-			</c:if>
-			<c:if test="${sessionScope.clienteLogado == null && sessionScope.locadoraLogada != null}">
-				<fmt:message key="index_hello_logged"/>  ${sessionScope.locadoraLogada.nome}.
-			</c:if>
-			<br>
-			<a href="locadoras">
-	        	<fmt:message key="rental_company_list"/> 
-			</a>
-			<br>
-			<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogada == null && sessionScope.clienteLogado.admin}">
-				<a href="clientes">
-					<fmt:message key="client_list"/> 
+			<div class="menu">
+				<c:if test="${sessionScope.clienteLogado == null && sessionScope.locadoraLogada == null}">
+					<fmt:message key="index_hello"/>
+				</c:if>
+				<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogada == null}">
+					<fmt:message key="index_hello_logged"/> ${sessionScope.clienteLogado.nome}.
+				</c:if>
+				<c:if test="${sessionScope.clienteLogado == null && sessionScope.locadoraLogada != null}">
+					<fmt:message key="index_hello_logged"/>  ${sessionScope.locadoraLogada.nome}.
+				</c:if>
+				<br>
+				<a href="locadoras">
+					<fmt:message key="rental_company_list"/> 
 				</a>
 				<br>
-			</c:if>
-			<c:if test="${sessionScope.clienteLogado != null || sessionScope.locadoraLogada != null}">
-				<a href="locacoes">
-					<fmt:message key="my_leases"/> 
-				</a>
-				<br>
-			</c:if>
-			<c:choose>
-			<c:when test="${sessionScope.clienteLogado == null && sessionScope.locadoraLogada == null}">
-				<a href="login.jsp">
-					Login
-				</a>
-				<br>
-				<a href="clientes/cadastro">
-					<fmt:message key="client_registration"/> 
-				</a>
-				<br>
-				<a href="locadoras/cadastro">
-					<fmt:message key="rental_company_registration"/> 
-				</a>
-				<br>
-			</c:when>
-			<c:otherwise>
-				<a href="${pageContext.request.contextPath}/logout.jsp">
-					<fmt:message key="log_out"/> 
-				</a>
-				<br>
-			</c:otherwise>
-			</c:choose>
+				<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogada == null && sessionScope.clienteLogado.admin}">
+					<a href="clientes">
+						<fmt:message key="client_list"/> 
+					</a>
+					<br>
+				</c:if>
+				<c:if test="${sessionScope.clienteLogado != null || sessionScope.locadoraLogada != null}">
+					<a href="locacoes">
+						<fmt:message key="my_leases"/> 
+					</a>
+					<br>
+				</c:if>
+				<c:choose>
+				<c:when test="${sessionScope.clienteLogado == null && sessionScope.locadoraLogada == null}">
+					<a href="login.jsp">
+						Login
+					</a>
+					<br>
+					<a href="clientes/cadastro">
+						<fmt:message key="client_registration"/> 
+					</a>
+					<br>
+					<a href="locadoras/cadastro">
+						<fmt:message key="rental_company_registration"/> 
+					</a>
+					<br>
+				</c:when>
+				<c:otherwise>
+					<a href="${pageContext.request.contextPath}/logout.jsp">
+						<fmt:message key="log_out"/> 
+					</a>
+					<br>
+				</c:otherwise>
+				</c:choose>
+			</div>
 	    </body>
     </fmt:bundle>
 </html>

@@ -57,6 +57,11 @@
 						<input type="text" name="telefone" value="${cliente.telefone}"/> <br/>
 						<fmt:message key="birthdate"/> </br>
 						<input type="text" name="dataNascimento" value="${cliente.dataNascimento}"/> <br/>
+						<fmt:message key="role"/> </br>
+							<select name="papel" id="papel">
+								<option value="USER">USER</option>
+								<option value="ADMIN">ADMIN</option>
+							</select> <br/>
 						<input type="submit" name="enviar" value="<fmt:message key="update"/>" />
 					</fieldset>
 				</form>

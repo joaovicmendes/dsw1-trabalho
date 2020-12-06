@@ -30,12 +30,7 @@
 				<h2>
 					<a href="/<%=contextPath%>">
 						<fmt:message key="main_menu"/>
-					</a><!--
-					&nbsp;&nbsp;&nbsp;
-					<a href="/<%=contextPath%>/clientes/cadastro">
-						<fmt:message key="client_new"/>
 					</a>
-					-->
 				</h2>
 			</div>
 			<div>
@@ -56,6 +51,13 @@
 						<input type="text" name="genero"/> <br/>
 						<fmt:message key="phone"/> </br>
 						<input type="text" name="telefone" placeholder="X XXXX-XXXX"/> <br/>
+						<c:if test="${sessionScope.clienteLogado != null && sessionScope.locadoraLogado == null && sessionScope.clienteLogado.admin}">
+							<fmt:message key="role"/> </br>
+							<select name="papel" id="papel">
+								<option value="USER">USER</option>
+								<option value="ADMIN">ADMIN</option>
+							</select> <br/>
+						</c:if>
 						<fmt:message key="birthdate"/> </br>
 						<input type="text" name="dataNascimento" placeholder="<fmt:message key="birthdate.ph"/>"/> <br/>
 						<input type="submit" name="enviar" value="<fmt:message key="register"/>" />

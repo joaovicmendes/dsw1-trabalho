@@ -3,9 +3,9 @@ create database LocacaoBicicletas;
 use LocacaoBicicletas;
 
 create table Cliente(
-    cpf varchar(11) not null,
+    cpf varchar(11) not null unique,
     nome varchar(256) not null,
-    email varchar(256) not null,
+    email varchar(256) not null unique,
     senha varchar(256) not null,
     genero varchar(256) not null,
     telefone varchar(13) not null,
@@ -16,9 +16,9 @@ create table Cliente(
 );
 
 create table Locadora(
-    cnpj varchar(14) not null,
+    cnpj varchar(14) not null unique,
     nome varchar(256) not null,
-    email varchar(256) not null,
+    email varchar(256) not null unique,
     senha varchar(256) not null,
     cidade varchar(256) not null,
 

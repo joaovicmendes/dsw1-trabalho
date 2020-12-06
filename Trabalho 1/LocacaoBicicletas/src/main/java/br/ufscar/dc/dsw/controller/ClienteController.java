@@ -106,7 +106,10 @@ public class ClienteController extends HttpServlet {
         String senha = request.getParameter("senha");
         String genero = request.getParameter("genero");
         String telefone = request.getParameter("telefone");
-        String papel = "USER";
+        String papel = request.getParameter("papel");
+        if (papel == null || papel.equals("")) {
+            papel = "USER";
+        }
         LocalDate dataNascimento = LocalDate.now();
         try {
             dataNascimento = LocalDate.parse(request.getParameter("dataNascimento"));
@@ -243,7 +246,10 @@ public class ClienteController extends HttpServlet {
             telefone = cliente.getTelefone();
         }
 
-        String papel = cliente.getPapel();
+        String papel = request.getParameter("papel");
+        if (telefone == "") {
+            telefone = cliente.getPapel();
+        }
 
         LocalDate dataNascimento = cliente.getDataNascimento();
         try {
