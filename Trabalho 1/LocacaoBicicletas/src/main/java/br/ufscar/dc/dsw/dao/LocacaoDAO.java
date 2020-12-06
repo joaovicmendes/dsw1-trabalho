@@ -59,8 +59,8 @@ public class LocacaoDAO extends GenericDAO {
     public Locacao get(String cpf, String cnpj, Date dataReserva) {
         Locacao locacao = null;
         
-        String sql = "SELECT * from Locacao where cnpj = ?, cpf = ?, dataReserva = ?";
-
+        String sql = "SELECT * from Locacao where cnpjLocadora = ? and cpfCliente = ? and dataReserva = ?";
+        
         try {
             // Conectando no banco e realizando consulta
             Connection conn = this.getConnection();
@@ -166,5 +166,30 @@ public class LocacaoDAO extends GenericDAO {
             throw new RuntimeException(e);
         }
         return listaLocacao;
+    }
+    
+    public void insert(Locacao locacao){
+        String sql = "INSERT INTO Locacao (dataReserva, cpfCliente, cnpjLocadora)";
+        sql += " VALUES (?, ?, ?)";
+
+        try{
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            
+            Timestamp timestamp = new Timestamp(locacao.getDataReserva().getTime());
+            
+            statement = conn.prepareStatement(sql);
+            statement.setTimestamp(1, timestamp);
+            statement.setString(2, locacao.getCliente().getCpf());
+            statement.setString(3, locacao.getLocadora().getCnpj());
+            statement.executeUpdate();
+            
+            statement.close();
+            conn.close();
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        } finally {
+        	
+        }
     }
 }

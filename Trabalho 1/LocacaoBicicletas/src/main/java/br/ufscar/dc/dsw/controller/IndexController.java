@@ -13,7 +13,7 @@ import br.ufscar.dc.dsw.dao.LocadoraDAO;
 import br.ufscar.dc.dsw.domain.Locadora;
 import br.ufscar.dc.dsw.util.Erro;
 
-@WebServlet(name = "Index", urlPatterns = {"/index"})
+@WebServlet(name = "Index", urlPatterns = {"/index*"})
 public class IndexController extends HttpServlet {
     
     private static final long serialVersionUID = 1L;
