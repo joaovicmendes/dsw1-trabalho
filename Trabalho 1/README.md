@@ -13,12 +13,12 @@ Prof. Dr. Delano Medeiros Beder
 ### Instruções:
 O projeto maven está contido na pasta `LocacaoBicicletas/`. Para executar a aplicação, é necessário ter instalado o `apache` e um servidor `mysql` com usuário e senha `root`.
 
-A partir da pasta `LocacaoBicicletas/` e com o `mysql.server` rodando, podemos criar o banco executando:
+A partir da pasta `LocacaoBicicletas/` e com o `mysql.server` rodando, podemos criar o banco chamado `LocacaoBicicletas` executando:
 ```
 mysql -uroot -p < src/db/create.sql
 ```
 
-Para preencher com alguns cliente:
+Para preencher com alguns clientes:
 ```
 mysql -uroot -p < src/db/insert_clientes.sql
 ```
@@ -39,4 +39,12 @@ Então, com o `apache` e o `mysql.server` rodando, basta executar:
 mvn tomcat7:deploy
 ```
 
-E acessar a url [localhost:8080/LocacaoBicicletas/](http://localhost:8080/LocacaoBicicletas/).
+E acessar a url [localhost:8080/LocacaoBicicletas/](http://localhost:8080/LocacaoBicicletas/). Dentre os clientes e locadoras cadastrados, temos:
+
+|Email|Senha|Papel|
+|---|---|---|
+|joao@gmail.com|admin|ADMIN|
+|renan@gmail.com|admin|USER|
+|matheus@gmail.com|admin|USER|
+|locadora_a@gmail.com|123456789|Locadora|
+|locadora_B@outlook.com|123456789|Locadora|
