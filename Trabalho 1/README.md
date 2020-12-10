@@ -8,7 +8,7 @@ Prof. Dr. Delano Medeiros Beder
 ### Grupo:
 - João Victor Mendes Freire, 758943
 - Matheus Victorello, 758606
-- Renan Dantas Pasquantonio, RA
+- Renan Dantas Pasquantonio, 760549
 
 ### Instruções:
 O projeto maven está contido na pasta `LocacaoBicicletas/`. Para executar a aplicação, é necessário ter instalado o `apache` e um servidor `mysql` com usuário e senha `root`.
