@@ -72,8 +72,13 @@ public class ClienteController {
 
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
-		usuarioService.excluir(id);
-		attr.addFlashAttribute("sucess", "Cliente excluído com sucesso.");
+		if (clienteService.clienteTemLocacao(id)) {
+			attr.addFlashAttribute("fail", "Cliente não excluído. Possui uma ou mais Locações.");
+		}
+		else {
+			usuarioService.excluir(id);
+			attr.addFlashAttribute("sucess", "Cliente excluído com sucesso.");
+		}
 		return "redirect:/clientes/listar";
 	}
 }

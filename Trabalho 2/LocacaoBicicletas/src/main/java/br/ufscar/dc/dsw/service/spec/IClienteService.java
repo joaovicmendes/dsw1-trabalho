@@ -8,4 +8,8 @@ public interface IClienteService {
 	List<Cliente> buscarTodos();
 
 	Cliente buscarPorCPF(String CPF);
+
+	Cliente buscarPorId(long id);
+
+	boolean clienteTemLocacao(Long id);
 }

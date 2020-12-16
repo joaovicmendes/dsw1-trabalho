@@ -26,4 +26,15 @@ public class ClienteService implements IClienteService {
 	public Cliente buscarPorCPF(String CPF) {
 		return dao.findByCPF(CPF);
 	}
+
+	@Transactional(readOnly = true)
+	public Cliente buscarPorId(long id) {
+		return dao.findById(id);
+	}
+
+	@Transactional(readOnly = true)
+	public boolean clienteTemLocacao(Long id) {
+		Cliente c = dao.findById(id.longValue());
+		return !c.getLocacoes().isEmpty(); 
+	}
 }

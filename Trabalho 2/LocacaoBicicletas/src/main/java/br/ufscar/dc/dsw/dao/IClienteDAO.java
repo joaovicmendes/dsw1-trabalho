@@ -11,5 +11,7 @@ public interface IClienteDAO extends CrudRepository<Cliente, Long>{
 
 	List<Cliente> findAll();
 	
+	Cliente findById(long id);
+
 	Cliente findByCPF(String CPF);
 }
