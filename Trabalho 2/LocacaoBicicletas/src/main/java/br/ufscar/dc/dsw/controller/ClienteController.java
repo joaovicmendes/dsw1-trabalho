@@ -42,6 +42,9 @@ public class ClienteController {
 
 	@PostMapping("/salvar")
 	public String salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr) {
+		if (cliente.getRole() == null) {
+			cliente.setRole("cliente");
+		}
 
 		if (result.hasErrors()) {
 			return "cliente/cadastro";
@@ -60,7 +63,10 @@ public class ClienteController {
 
 	@PostMapping("/editar")
 	public String editar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr) {
-
+		if (cliente.getRole() == null) {
+			cliente.setRole("cliente");
+		}
+		
 		if (result.hasErrors()) {
 			return "cliente/cadastro";
 		}

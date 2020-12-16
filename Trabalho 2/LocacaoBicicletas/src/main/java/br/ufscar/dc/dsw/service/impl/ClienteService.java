@@ -34,7 +34,6 @@ public class ClienteService implements IClienteService {
 
 	@Transactional(readOnly = true)
 	public boolean clienteTemLocacao(Long id) {
-		Cliente c = dao.findById(id.longValue());
-		return !c.getLocacoes().isEmpty(); 
+		return !dao.findById(id.longValue()).getLocacoes().isEmpty(); 
 	}
 }

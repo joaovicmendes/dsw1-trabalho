@@ -7,5 +7,11 @@ import br.ufscar.dc.dsw.domain.Locadora;
 public interface ILocadoraService {
 	Locadora buscarPorCNPJ(String CNPJ);
 
+	Locadora buscarPorId(long id);
+
+	List<Locadora> buscarTodos();
+
 	List<Locadora> buscarPorCidade(String cidade);
+
+	boolean locadoraTemLocacao(Long id);
 }
