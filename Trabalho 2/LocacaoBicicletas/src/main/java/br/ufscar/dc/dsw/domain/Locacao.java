@@ -15,7 +15,7 @@ import br.ufscar.dc.dsw.domain.AbstractEntity;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Locacao")
-public class Locacao extends extends AbstractEntity<Long> {
+public class Locacao extends AbstractEntity<Long> {
 
 	@NotBlank
     @ManyToOne
