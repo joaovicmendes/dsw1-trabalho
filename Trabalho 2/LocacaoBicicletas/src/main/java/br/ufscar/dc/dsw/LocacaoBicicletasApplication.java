@@ -33,7 +33,7 @@ public class LocacaoBicicletasApplication {
 			c1.setEnabled(true);
 			c1.setCPF("111.222.333-44");
 			c1.setNome("Alice");
-			c1.setTelefone("00900000000");
+			c1.setTelefone("00 9 0000-0000");
 			c1.setGenero("F");
 			c1.setDataNascimento("01/01/1970");
 			usuarioDAO.save(c1);
@@ -45,7 +45,7 @@ public class LocacaoBicicletasApplication {
 			c2.setEnabled(true);
 			c2.setCPF("111.222.333-55");
 			c2.setNome("Bob");
-			c2.setTelefone("00900000000");
+			c2.setTelefone("00 9 0000-0000");
 			c2.setGenero("M");
 			c2.setDataNascimento("01/01/1970");
 			usuarioDAO.save(c2);

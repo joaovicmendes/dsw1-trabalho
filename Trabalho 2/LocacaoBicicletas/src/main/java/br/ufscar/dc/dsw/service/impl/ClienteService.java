@@ -18,6 +18,11 @@ public class ClienteService implements IClienteService {
 	IClienteDAO dao;
 
 	@Transactional(readOnly = true)
+	public List<Cliente> buscarTodos() {
+		return dao.findAll();
+	}
+
+	@Transactional(readOnly = true)
 	public Cliente buscarPorCPF(String CPF) {
 		return dao.findByCPF(CPF);
 	}
