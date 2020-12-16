@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 public class Locadora extends Usuario {
 
 	@NotBlank
-	@Size(min = 14, max = 14, message = "{Size.locadora.CNPJ}")
+	@Size(min = 18, max = 18, message = "{Size.locadora.CNPJ}")
 	@Column(nullable = false, unique = true, length = 60)
 	private String CNPJ;
 	
@@ -29,7 +29,7 @@ public class Locadora extends Usuario {
 	@Column(nullable = false, unique = false, length = 60)
 	private String cidade;
 
-	@OneToMany(mappedBy = "locadora") // CONFIRMAR APÓS FAZER CLASSE LOCADORA
+	@OneToMany(mappedBy = "locadora")
 	private List<Locacao> locacoes;
 	
 	public String getCNPJ() {

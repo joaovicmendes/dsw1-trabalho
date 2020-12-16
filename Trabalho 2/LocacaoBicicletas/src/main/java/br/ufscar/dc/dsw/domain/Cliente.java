@@ -18,7 +18,7 @@ import br.ufscar.dc.dsw.domain.Locacao;
 public class Cliente extends Usuario {
 
 	@NotBlank
-	@Size(min = 11, max = 11, message = "{Size.cliente.CPF}")
+	@Size(min = 14, max = 14)
 	@Column(nullable = false, unique = true, length = 60)
 	private String CPF;
 	
@@ -38,11 +38,11 @@ public class Cliente extends Usuario {
 	private String genero;
 
     @NotBlank
-	@Size(min = 8, max = 8)
+	@Size(min = 8, max = 10)
 	@Column(nullable = false, unique = false, length = 60)
 	private String dataNascimento;
 
-	@OneToMany(mappedBy = "cliente") // CONFIRMAR APÓS FAZER CLASSE LOCACAO
+	@OneToMany(mappedBy = "cliente")
 	private List<Locacao> locacoes;
 	
 	public String getCPF() {

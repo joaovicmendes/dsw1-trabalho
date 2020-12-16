@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Id;
 import javax.persistence.Table;
  
@@ -11,6 +13,7 @@ import br.ufscar.dc.dsw.domain.AbstractEntity;
 
 @Entity
 @Table(name = "Usuario")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario extends AbstractEntity<Long> {
  
     @Column(nullable = false, length = 45)

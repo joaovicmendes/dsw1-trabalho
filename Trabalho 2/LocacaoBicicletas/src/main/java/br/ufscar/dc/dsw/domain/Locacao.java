@@ -17,17 +17,16 @@ import br.ufscar.dc.dsw.domain.AbstractEntity;
 @Table(name = "Locacao")
 public class Locacao extends AbstractEntity<Long> {
 
-	@NotBlank
     @ManyToOne
     @JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
-    @NotBlank
+    @ManyToOne
     @JoinColumn(name = "locadora_id")
 	private Locadora locadora;
 
     @NotBlank
-	@Size(min = 10, max = 10)
+	@Size(min = 13, max = 14)
 	@Column(nullable = false, unique = false, length = 60)
 	private String dataReserva;
 	
