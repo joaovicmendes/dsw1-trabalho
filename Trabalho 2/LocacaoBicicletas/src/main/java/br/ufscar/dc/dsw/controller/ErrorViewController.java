@@ -27,8 +27,8 @@ public class ErrorViewController implements ErrorViewResolver {
 					model.addObject("message", "Ocorreu um erro inexperado, tente mais tarde.");
 					break;
 				default:
-					model.addObject("error", map.get("error"));
-					model.addObject("message", map.get("message"));
+					model.addObject("error", "default.error");
+					model.addObject("message", "default.message");
 					break;
 		}		
 		return model;
