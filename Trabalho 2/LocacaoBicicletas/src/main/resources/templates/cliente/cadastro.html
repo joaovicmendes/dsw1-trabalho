@@ -10,11 +10,11 @@
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><i class="oi oi-caret-right"></i>
-						<span>Cadastrar Cliente</span></li>
+						<span th:text="#{client.cadastrar.label}">Cadastrar Cliente</span></li>
 				</ul>
 				<a class="btn btn-primary btn-md" th:href="@{/clientes/listar}"
 					role="button"> <span class="oi oi-spreadsheet" title="Listar"
-					aria-hidden="true"></span> <span>Listar Clientes</span>
+					aria-hidden="true"></span> <span th:text="#{client.listar.label}">Listar Clientes</span>
 				</a>
 			</div>
 		</nav>
@@ -29,8 +29,8 @@
 				
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="nome">Nome</label> 
-						<input type="text" class="form-control" id="nome" placeholder="Nome"
+						<label for="nome" th:text="#{client.nome.label}">Nome</label> 
+						<input type="text" class="form-control" id="nome" 
 							autofocus="autofocus" th:field="*{nome}"
 							th:classappend="${#fields.hasErrors('nome')} ? is-invalid" />
 
@@ -40,7 +40,7 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="CPF">CPF</label> 
+						<label for="CPF" th:text="#{client.cpf.label}">CPF</label> 
 						<input type="text" class="form-control" id="CPF" placeholder="___.___.___-__"
 							autofocus="autofocus" th:field="*{CPF}"
 							th:classappend="${#fields.hasErrors('CPF')} ? is-invalid" 
@@ -52,8 +52,8 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="username">Email</label> 
-						<input type="email" class="form-control" id="username" placeholder="exemplo@email.com"
+						<label for="username" th:text="#{client.email.label}">Email</label> 
+						<input type="email" class="form-control" id="username" placeholder="abcde@email.com"
 							autofocus="autofocus" th:field="*{username}"
 							th:classappend="${#fields.hasErrors('username')} ? is-invalid"/>
 						                               
@@ -63,7 +63,7 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="password">Senha</label> 
+						<label for="password" th:text="#{client.senha.label}">Senha</label> 
 						<input type="password" class="form-control" id="password"
 							autofocus="autofocus" th:field="*{password}"
 							th:classappend="${#fields.hasErrors('password')} ? is-invalid"/>
@@ -74,7 +74,7 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="telefone">Telefone</label> 
+						<label for="telefone" th:text="#{client.telefone.label}">Telefone</label> 
 						<input type="text" class="form-control" id="telefone" placeholder="XX X XXXX-XXXX"
 							autofocus="autofocus" th:field="*{telefone}"
 							th:classappend="${#fields.hasErrors('telefone')} ? is-invalid" 
@@ -86,7 +86,7 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="genero">Gênero</label> 
+						<label for="genero" th:text="#{client.genero.label}">Gênero</label> 
 						<input type="text" class="form-control" id="genero"
 							autofocus="autofocus" th:field="*{genero}"
 							th:classappend="${#fields.hasErrors('genero')} ? is-invalid"/>
@@ -97,7 +97,7 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="dataNascimento">Data de Nascimento</label> 
+						<label for="dataNascimento" th:text="#{client.data.label}">Data de Nascimento</label> 
 						<input type="text" class="form-control" id="dataNascimento" placeholder="dd/mm/yyyy"
 							autofocus="autofocus" th:field="*{dataNascimento}"
 							th:classappend="${#fields.hasErrors('dataNascimento')} ? is-invalid"
@@ -109,7 +109,7 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="role">Papel</label> 
+						<label for="role" th:text="#{client.papel.label}">Papel</label> 
 						<select name="role" class="form-control" id="role">
 							<option value="cliente">Cliente</option>
 							<option value="admin">Admin</option>
@@ -118,7 +118,7 @@
 				</div>
 
 				<input type="hidden" id="id" th:field="*{id}" />
-				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+				<button type="submit" class="btn btn-primary btn-sm" th:text="#{button.save}">Salvar</button>
 			</form>
 		</div>
 	</section>

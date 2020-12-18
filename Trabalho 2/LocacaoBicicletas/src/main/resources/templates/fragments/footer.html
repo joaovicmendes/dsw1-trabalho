@@ -3,8 +3,14 @@
 <head><meta charset="UTF-8"></head>
 <body>
 	<footer class="layout-footer" th:fragment="rodape">
+
 		<div class="container">
-			<span class="footer-copy">Desenvolvimento de Software para Web 1 - 2020/1 - DC-UFSCar</span>
+			<div sec:authorize="isAuthenticated()">
+				<span th:text="#{login.username}"></span>: <span
+					sec:authentication="name"></span> | <span th:text="#{user.role}"></span>:
+				<span sec:authentication="principal.authorities"></span> <br />
+				<span class="footer-copy">Desenvolvimento de Software para Web 1 - 2020/1 - DC-UFSCar</span>
+			</div>
 		</div>
 	</footer>
 </body>

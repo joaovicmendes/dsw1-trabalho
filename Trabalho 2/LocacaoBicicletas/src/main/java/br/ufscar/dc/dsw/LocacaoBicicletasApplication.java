@@ -4,6 +4,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 
 import br.ufscar.dc.dsw.domain.*;
 import br.ufscar.dc.dsw.dao.*;
@@ -16,19 +18,19 @@ public class LocacaoBicicletasApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(IUsuarioDAO usuarioDAO, IClienteDAO clienteDAO, ILocadoraDAO locadoraDAO, ILocacaoDAO locacaoDAO) {
+	public CommandLineRunner demo(IUsuarioDAO usuarioDAO, IClienteDAO clienteDAO, ILocadoraDAO locadoraDAO, ILocacaoDAO locacaoDAO, BCryptPasswordEncoder encoder) {
 		return (args) -> {
 						
 			Usuario user = new Usuario();
 			user.setUsername("admin");
-			user.setPassword("admin");
+			user.setPassword(encoder.encode("admin"));
 			user.setRole("admin");
 			user.setEnabled(true);
 			usuarioDAO.save(user);
 
 			Cliente c1 = new Cliente();
 			c1.setUsername("alice@gmail.com");
-			c1.setPassword("alice");
+			c1.setPassword(encoder.encode("alice"));
 			c1.setRole("cliente");
 			c1.setEnabled(true);
 			c1.setCPF("111.222.333-44");
@@ -40,7 +42,7 @@ public class LocacaoBicicletasApplication {
 
 			Cliente c2 = new Cliente();
 			c2.setUsername("bob@gmail.com");
-			c2.setPassword("bob");
+			c2.setPassword(encoder.encode("bob"));
 			c2.setRole("cliente");
 			c2.setEnabled(true);
 			c2.setCPF("111.222.333-55");
@@ -52,7 +54,7 @@ public class LocacaoBicicletasApplication {
 
 			Locadora locadora1 = new Locadora();
 			locadora1.setUsername("locadora_a@gmail.com");
-			locadora1.setPassword("locadora_a");
+			locadora1.setPassword(encoder.encode("locadora_a"));
 			locadora1.setRole("locadora");
 			locadora1.setEnabled(true);
 			locadora1.setCNPJ("11.222.333/4444-55");
@@ -62,7 +64,7 @@ public class LocacaoBicicletasApplication {
 
 			Locadora locadora2 = new Locadora();
 			locadora2.setUsername("locadora_b@gmail.com");
-			locadora2.setPassword("locadora_b");
+			locadora2.setPassword(encoder.encode("locadora_b"));
 			locadora2.setRole("locadora");
 			locadora2.setEnabled(true);
 			locadora2.setCNPJ("11.222.333/4444-66");
