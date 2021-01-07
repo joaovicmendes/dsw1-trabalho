@@ -42,6 +42,19 @@ public class LocacaoController {
 		return clienteService.buscarPorId(user.getId());
 	}
 	
+	private boolean verificaDataHoraOcupada(Locacao locacao) {
+		List<Locacao> locacoes = locacaoService.buscarPorLocadora(locacao.getLocadora());
+		
+		for (int i = 0; i < locacoes.size(); i++) {
+			if (locacoes.get(i).getDataReserva().equals(locacao.getDataReserva())
+					&& locacoes.get(i).getHoraReserva() == locacao.getHoraReserva()) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Locacao locacao, ModelMap model) {
 		model.addAttribute("locadoras", locadoraService.buscarTodos());
@@ -63,9 +76,15 @@ public class LocacaoController {
 			return "locacao/cadastro";
 		}
 		
-		locacao.setCliente(getClienteAutenticado());
+		if (verificaDataHoraOcupada(locacao)) {
+			model.addAttribute("locadoras", locadoraService.buscarTodos());
+			attr.addFlashAttribute("fail", "Locação não inserida. Horário ocupado.");
+			return "redirect:/locacoes/cadastrar";
+		}
 		
+		locacao.setCliente(getClienteAutenticado());
 		locacaoService.salvar(locacao);
+		
 		attr.addFlashAttribute("sucess", "Locação inserida com sucesso.");
 		return "redirect:/locacoes/listar";
 	}
@@ -84,7 +103,15 @@ public class LocacaoController {
 			return "locacao/cadastro";
 		}
 
+		if (verificaDataHoraOcupada(locacao)) {
+			model.addAttribute("locadoras", locadoraService.buscarTodos());
+			attr.addFlashAttribute("fail", "Locação não inserida. Horário ocupado.");
+			return "redirect:/locacoes/cadastrar";
+		}
+		
+		locacao.setCliente(getClienteAutenticado());
 		locacaoService.salvar(locacao);
+		
 		attr.addFlashAttribute("sucess", "Locação inserida com sucesso.");
 		return "redirect:/locacoes/listar";
 	}
