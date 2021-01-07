@@ -64,9 +64,9 @@ public class ClienteController {
 	@PostMapping("/editar")
 	public String editar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr) {
 		if (cliente.getRole() == null) {
-			cliente.setRole("cliente");
+			cliente.setRole("ROLE_CLIENTE");
 		}
-		
+
 		if (result.hasErrors()) {
 			return "cliente/cadastro";
 		}

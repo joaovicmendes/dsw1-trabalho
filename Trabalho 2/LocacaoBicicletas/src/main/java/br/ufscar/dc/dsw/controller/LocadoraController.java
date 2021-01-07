@@ -82,7 +82,7 @@ public class LocadoraController {
 	@PostMapping("/editar")
 	public String editar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr) {
 		if (locadora.getRole() == null) {
-			locadora.setRole("locadora");
+			locadora.setRole("ROLE_LOCADORA");
 		}
 
 		if (result.hasErrors()) {
