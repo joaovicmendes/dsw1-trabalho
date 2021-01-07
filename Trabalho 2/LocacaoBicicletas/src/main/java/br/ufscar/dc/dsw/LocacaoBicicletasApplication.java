@@ -24,14 +24,14 @@ public class LocacaoBicicletasApplication {
 			Usuario user = new Usuario();
 			user.setUsername("admin");
 			user.setPassword(encoder.encode("admin"));
-			user.setRole("admin");
+			user.setRole("ROLE_ADMIN");
 			user.setEnabled(true);
 			usuarioDAO.save(user);
 
 			Cliente c1 = new Cliente();
 			c1.setUsername("alice@gmail.com");
 			c1.setPassword(encoder.encode("alice"));
-			c1.setRole("cliente");
+			c1.setRole("ROLE_CLIENTE");
 			c1.setEnabled(true);
 			c1.setCPF("111.222.333-44");
 			c1.setNome("Alice");
@@ -43,7 +43,7 @@ public class LocacaoBicicletasApplication {
 			Cliente c2 = new Cliente();
 			c2.setUsername("bob@gmail.com");
 			c2.setPassword(encoder.encode("bob"));
-			c2.setRole("cliente");
+			c2.setRole("ROLE_CLIENTE");
 			c2.setEnabled(true);
 			c2.setCPF("111.222.333-55");
 			c2.setNome("Bob");
@@ -55,7 +55,7 @@ public class LocacaoBicicletasApplication {
 			Locadora locadora1 = new Locadora();
 			locadora1.setUsername("locadora_a@gmail.com");
 			locadora1.setPassword(encoder.encode("locadora_a"));
-			locadora1.setRole("locadora");
+			locadora1.setRole("ROLE_LOCADORA");
 			locadora1.setEnabled(true);
 			locadora1.setCNPJ("11.222.333/4444-55");
 			locadora1.setNome("Locadora A");
@@ -65,7 +65,7 @@ public class LocacaoBicicletasApplication {
 			Locadora locadora2 = new Locadora();
 			locadora2.setUsername("locadora_b@gmail.com");
 			locadora2.setPassword(encoder.encode("locadora_b"));
-			locadora2.setRole("locadora");
+			locadora2.setRole("ROLE_LOCADORA");
 			locadora2.setEnabled(true);
 			locadora2.setCNPJ("11.222.333/4444-66");
 			locadora2.setNome("Locadora B");

@@ -43,7 +43,7 @@ public class ClienteController {
 	@PostMapping("/salvar")
 	public String salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr) {
 		if (cliente.getRole() == null) {
-			cliente.setRole("cliente");
+			cliente.setRole("ROLE_CLIENTE");
 		}
 
 		if (result.hasErrors()) {

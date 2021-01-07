@@ -61,7 +61,7 @@ public class LocadoraController {
 	@PostMapping("/salvar")
 	public String salvar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr) {
 		if (locadora.getRole() == null) {
-			locadora.setRole("locadora");
+			locadora.setRole("ROLE_LOCADORA");
 		}
 		
 		if (result.hasErrors()) {

@@ -42,7 +42,7 @@ protected void configure(HttpSecurity http) throws Exception {
    http.authorizeRequests()
    		.antMatchers("/", "/index", "/error","/clientes/listar","/locadoras/listar","/locacao/listar").permitAll()
    		.antMatchers("/login/**", "/js/**", "/css/**","/image/**", "/webjars/**").permitAll()
-		//.antMatchers("/clientes/cadastrar","/locadoras/cadastrar").hasRole("admin")
+		.antMatchers("/clientes/cadastrar","/locadoras/cadastrar").hasRole("ADMIN")
 		//.antMatchers("/locacoes/cadastrar","/locacoes/listar").hasRole("cliente")
    		.anyRequest().authenticated()
    	.and()

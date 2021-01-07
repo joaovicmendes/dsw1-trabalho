@@ -34,8 +34,10 @@
 							<th th:text="#{client.telefone.label}"></th>
 							<th th:text="#{client.genero.label}"></th>
 							<th th:text="#{client.data.label}"></th>
-							<th th:text="#{client.papel.label}"></th>
-							<th th:text="#{acao.label}"></th>
+							<div sec:authorize="hasRole('ROLE_ADMIN')">
+								<th th:text="#{client.papel.label}"></th>
+								<th th:text="#{acao.label}"></th>
+							</div>
 						</tr>
 					</thead>
 					<tbody>
@@ -47,9 +49,10 @@
 							<td th:text="${cliente.telefone}"></td>
 							<td th:text="${cliente.genero}"></td>
 							<td th:text="${cliente.dataNascimento}"></td>
-							<td th:text="${cliente.role}"></td>
-							<td colspan="2">
-								<a class="btn btn-info btn-sm" th:href="@{/clientes/editar/{id} (id=${cliente.id}) }"
+							<div sec:authorize="hasRole('ROLE_ADMIN')">
+								<td th:text="${cliente.role}"></td>
+								<td colspan="2">
+									<a class="btn btn-info btn-sm" th:href="@{/clientes/editar/{id} (id=${cliente.id}) }"
 									role="button"> 
 									<span class="oi oi-brush" title="Editar" aria-hidden="true"> </span>
 								</a>
@@ -59,7 +62,8 @@
 									data-toggle="modal" data-target="#myModal">
 									<span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
 								</button>
-							</td>
+								</td>
+							</div>
 						</tr>
 					</tbody>
 				</table>

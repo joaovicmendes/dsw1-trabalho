@@ -26,15 +26,20 @@
 			<div th:replace="fragments/alert"></div>
 
 			<div>
-				<p th:text="#{button.filter.label}"></p> 
+				<p th:text="#{button.filter.city}"></p> 
+				
 				<form th:action="@{/locadoras/listar}" method="get">
-					<select name="c" class="form-control" id="c">
-						<option value="" th:text="#{filter.all}"></option>
-					<span th:each="cidade : ${cidades}">
-						<option th:value="${cidade}" th:text="${cidade}"></option>
-					</span>
-					</select>
-					<button type="submit" class="btn btn-secondary btn-sm" th:text="#{button.filter.city}"></button>
+					<div class="input-group">
+						<select name="c" class="custom-select" id="c">
+							<option value="" th:text="#{filter.all}"></option>
+							<span th:each="cidade : ${cidades}">
+								<option th:value="${cidade}" th:text="${cidade}"></option>
+							</span>
+						</select>
+						<div class="input-group-append">
+						  <button class="btn btn-outline-secondary" type="submit" th:text="#{button.filter.label}"></button>
+						</div>
+					  </div>
 				</form>
 				</br>
 			</div>
@@ -48,7 +53,9 @@
 							<th th:text="#{locadora.nome.label}"></th>
 							<th th:text="#{locadora.email.label}"></th>
 							<th th:text="#{locadora.cidade.label}"></th>
-							<th th:text="#{acao.label}"></th>
+							<div sec:authorize="hasRole('ROLE_ADMIN')">
+								<th th:text="#{acao.label}"></th>
+							</div>
 						</tr>
 					</thead>
 					<tbody>
@@ -58,18 +65,21 @@
 							<td th:text="${locadora.nome}"></td>
 							<td th:text="${locadora.username}"></td>
 							<td th:text="${locadora.cidade}"></td>
-							<td colspan="2">
-								<a class="btn btn-info btn-sm" th:href="@{/locadoras/editar/{id} (id=${locadora.id}) }"
+							<div sec:authorize="hasRole('ROLE_ADMIN')">
+
+								<td colspan="2">
+									<a class="btn btn-info btn-sm" th:href="@{/locadoras/editar/{id} (id=${locadora.id}) }"
 									role="button"> 
 									<span class="oi oi-brush" title="Editar" aria-hidden="true"> </span>
 								</a>
 								<button
-									th:id="${'btn_locadoras/excluir/' + locadora.id}"
-									type="button" class="btn btn-danger btn-sm"
-									data-toggle="modal" data-target="#myModal">
-									<span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-								</button>
-							</td>
+								th:id="${'btn_locadoras/excluir/' + locadora.id}"
+								type="button" class="btn btn-danger btn-sm"
+								data-toggle="modal" data-target="#myModal">
+								<span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
+							</button>
+								</td>
+							</div>
 						</tr>
 					</tbody>
 				</table>
