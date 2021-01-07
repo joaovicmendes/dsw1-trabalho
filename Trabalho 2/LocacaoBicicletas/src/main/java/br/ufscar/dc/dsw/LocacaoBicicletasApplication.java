@@ -73,19 +73,22 @@ public class LocacaoBicicletasApplication {
 			usuarioDAO.save(locadora2);
 			
 			Locacao locacao1 = new Locacao();
-			locacao1.setDataReserva("01/01/2021 13h");
+			locacao1.setDataReserva("2021-01-01");
+			locacao1.setHoraReserva(13);
 			locacao1.setCliente(c1);
 			locacao1.setLocadora(locadora1);
 			locacaoDAO.save(locacao1);
 
 			Locacao locacao2 = new Locacao();
-			locacao2.setDataReserva("02/01/2021 13h");
+			locacao2.setDataReserva("2021-02-02");
+			locacao2.setHoraReserva(14);
 			locacao2.setCliente(c1);
 			locacao2.setLocadora(locadora2);
 			locacaoDAO.save(locacao2);
 
 			Locacao locacao3 = new Locacao();
-			locacao3.setDataReserva("01/01/2021 14h");
+			locacao3.setDataReserva("2021-03-03");
+			locacao3.setHoraReserva(15);
 			locacao3.setCliente(c2);
 			locacao3.setLocadora(locadora2);
 			locacaoDAO.save(locacao3);

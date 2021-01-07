@@ -40,7 +40,7 @@ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 @Override
 protected void configure(HttpSecurity http) throws Exception {
    http.authorizeRequests()
-   		.antMatchers("/", "/index", "/error","/clientes/listar","/locadoras/listar").permitAll()
+   		.antMatchers("/", "/index", "/error","/clientes/listar","/locadoras/listar","/locacao/listar").permitAll()
    		.antMatchers("/login/**", "/js/**", "/css/**","/image/**", "/webjars/**").permitAll()
 		//.antMatchers("/clientes/cadastrar","/locadoras/cadastrar").hasRole("admin")
 		//.antMatchers("/locacoes/cadastrar","/locacoes/listar").hasRole("cliente")
