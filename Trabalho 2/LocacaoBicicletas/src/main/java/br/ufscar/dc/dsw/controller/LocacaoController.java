@@ -63,8 +63,16 @@ public class LocacaoController {
 
 	@GetMapping("/listar")
 	public String listar(@RequestParam(required = false) String c, ModelMap model) {
-		List<Locacao> locacoes = locacaoService.buscarPorCliente(getClienteAutenticado());
-
+		Cliente clienteAutenticado = getClienteAutenticado();
+		
+		List<Locacao> locacoes;
+		
+		if (clienteAutenticado == null) { // ADM
+			locacoes = locacaoService.buscarTodos();
+		} else {
+			locacoes = locacaoService.buscarPorCliente(getClienteAutenticado());
+		}
+		
 		model.addAttribute("locacoes", locacoes);
 		return "locacao/lista";
 	}
@@ -103,13 +111,22 @@ public class LocacaoController {
 			return "locacao/cadastro";
 		}
 
-		if (verificaDataHoraOcupada(locacao)) {
-			model.addAttribute("locadoras", locadoraService.buscarTodos());
-			attr.addFlashAttribute("fail", "Locação não inserida. Horário ocupado.");
-			return "redirect:/locacoes/cadastrar";
+//		Se está editando o horário está disponível
+//		if (verificaDataHoraOcupada(locacao)) {
+//			model.addAttribute("locadoras", locadoraService.buscarTodos());
+//			attr.addFlashAttribute("fail", "Locação não inserida. Horário ocupado.");
+//			return "redirect:/locacoes/cadastrar";
+//		}
+		
+		Cliente clienteAutenticado = getClienteAutenticado();
+		
+		if (clienteAutenticado == null) { // ADM
+			Cliente donoLocacao = locacaoService.buscarPorId(locacao.getId()).getCliente();
+			locacao.setCliente(donoLocacao);
+		} else {
+			locacao.setCliente(getClienteAutenticado());
 		}
 		
-		locacao.setCliente(getClienteAutenticado());
 		locacaoService.salvar(locacao);
 		
 		attr.addFlashAttribute("sucess", "Locação inserida com sucesso.");
