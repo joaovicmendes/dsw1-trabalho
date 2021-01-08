@@ -15,7 +15,12 @@ O projeto maven está contido na pasta `LocacaoBicicletas/`. Para executar a apl
 
 A partir da pasta `LocacaoBicicletas/` e com o `mysql.server` rodando, podemos criar o banco chamado `LocacaoBicicletas` executando:
 ```
-mysql -uroot -p < create db LocacaoBicicletas;
+mysql -uroot -p
+```
+
+Dentro do SQL, basta executar:
+```
+create database LocacaoBicicletas;
 ```
 
 O comando para executar é:
