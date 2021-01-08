@@ -102,12 +102,13 @@ public class LocacaoController {
 			model.addAttribute("locadoras", locadoraService.buscarTodos());
 			return "locacao/cadastro";
 		}
-
-		if (verificaDataHoraOcupada(locacao)) {
-			model.addAttribute("locadoras", locadoraService.buscarTodos());
-			attr.addFlashAttribute("fail", "Locação não inserida. Horário ocupado.");
-			return "redirect:/locacoes/cadastrar";
-		}
+		
+//		Se está editando o horário está disponível
+//		if (verificaDataHoraOcupada(locacao)) {
+//			model.addAttribute("locadoras", locadoraService.buscarTodos());
+//			attr.addFlashAttribute("fail", "Locação não inserida. Horário ocupado.");
+//			return "redirect:/locacoes/cadastrar";
+//		}
 		
 		locacao.setCliente(getClienteAutenticado());
 		locacaoService.salvar(locacao);
