@@ -9,10 +9,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import br.ufscar.dc.dsw.domain.Usuario; 
 import br.ufscar.dc.dsw.domain.Locacao; 
 
 @SuppressWarnings("serial")
+@JsonIgnoreProperties(value = { "locacoes" })
 @Entity
 @Table(name = "Cliente")
 public class Cliente extends Usuario {
