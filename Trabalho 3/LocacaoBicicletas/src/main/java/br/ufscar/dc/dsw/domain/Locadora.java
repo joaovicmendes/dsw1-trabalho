@@ -9,7 +9,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @SuppressWarnings("serial")
+@JsonIgnoreProperties(value = { "locacoes" }) // Essencial, impede loop infinito
 @Entity
 @Table(name = "Locadora")
 public class Locadora extends Usuario {
