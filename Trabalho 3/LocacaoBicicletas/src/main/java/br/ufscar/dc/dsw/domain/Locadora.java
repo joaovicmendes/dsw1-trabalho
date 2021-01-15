@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @SuppressWarnings("serial")
-@JsonIgnoreProperties(value = { "locacoes" }) // Essencial, impede loop infinito
+@JsonIgnoreProperties(value = { "locacoes", "password", "role", "enabled" })
 @Entity
 @Table(name = "Locadora")
 public class Locadora extends Usuario {

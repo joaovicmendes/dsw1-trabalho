@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -62,11 +63,12 @@ public class ClienteRestController {
 
 	@PostMapping(path = "/clientes")
 	@ResponseBody
-	public ResponseEntity<Cliente> cria(@RequestBody JSONObject json) {
+	public ResponseEntity<Cliente> cria(@RequestBody JSONObject json, BCryptPasswordEncoder encoder) {
 		try {
 			if (isJSONValid(json.toString())) {
 				Cliente cliente = new Cliente();
 				parse(cliente, json);
+				cliente.setPassword(encoder.encode(cliente.getPassword()));
 				service.salvar(cliente);
 				return ResponseEntity.ok(cliente);
 			} else {

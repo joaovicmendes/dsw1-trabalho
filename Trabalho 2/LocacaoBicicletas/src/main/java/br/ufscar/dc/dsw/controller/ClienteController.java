@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.service.spec.IClienteService;
@@ -41,7 +42,7 @@ public class ClienteController {
 	}
 
 	@PostMapping("/salvar")
-	public String salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr) {
+	public String salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr, BCryptPasswordEncoder encoder) {
 		if (cliente.getRole() == null) {
 			cliente.setRole("ROLE_CLIENTE");
 		}
@@ -49,7 +50,7 @@ public class ClienteController {
 		if (result.hasErrors()) {
 			return "cliente/cadastro";
 		}
-
+		cliente.setPassword(encoder.encode(cliente.getPassword()));
 		usuarioService.salvar(cliente);
 		attr.addFlashAttribute("sucess", "Cliente inserido com sucesso");
 		return "redirect:/clientes/listar";

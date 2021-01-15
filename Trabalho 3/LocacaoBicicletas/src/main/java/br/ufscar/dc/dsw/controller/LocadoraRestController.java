@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -72,11 +73,12 @@ public class LocadoraRestController {
 
 	@PostMapping(path = "/locadoras")
 	@ResponseBody
-	public ResponseEntity<Locadora> cria(@RequestBody JSONObject json) {
+	public ResponseEntity<Locadora> cria(@RequestBody JSONObject json, BCryptPasswordEncoder encoder) {
 		try {
 			if (isJSONValid(json.toString())) {
 				Locadora locadora = new Locadora();
 				parse(locadora, json);
+				locadora.setPassword(encoder.encode(locadora.getPassword()));
 				service.salvar(locadora);
 				return ResponseEntity.ok(locadora);
 			} else {

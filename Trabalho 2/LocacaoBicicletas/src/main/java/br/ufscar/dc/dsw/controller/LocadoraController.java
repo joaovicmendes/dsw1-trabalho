@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import br.ufscar.dc.dsw.domain.Locadora;
 import br.ufscar.dc.dsw.service.spec.ILocadoraService;
@@ -59,7 +60,7 @@ public class LocadoraController {
 	}
 
 	@PostMapping("/salvar")
-	public String salvar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr) {
+	public String salvar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr, BCryptPasswordEncoder encoder) {
 		if (locadora.getRole() == null) {
 			locadora.setRole("ROLE_LOCADORA");
 		}
@@ -67,7 +68,7 @@ public class LocadoraController {
 		if (result.hasErrors()) {
 			return "locadora/cadastro";
 		}
-
+		locadora.setPassword(encoder.encode(locadora.getPassword()));
 		usuarioService.salvar(locadora);
 		attr.addFlashAttribute("sucess", "Locadora inserida com sucesso");
 		return "redirect:/locadoras/listar";

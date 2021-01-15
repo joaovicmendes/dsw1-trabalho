@@ -15,7 +15,7 @@ import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.domain.Locacao; 
 
 @SuppressWarnings("serial")
-@JsonIgnoreProperties(value = { "locacoes" })
+@JsonIgnoreProperties(value = { "locacoes", "password", "role", "enabled" })
 @Entity
 @Table(name = "Cliente")
 public class Cliente extends Usuario {
