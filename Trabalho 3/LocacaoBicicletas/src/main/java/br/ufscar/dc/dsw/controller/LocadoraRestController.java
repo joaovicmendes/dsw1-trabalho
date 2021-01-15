@@ -64,14 +64,15 @@ public class LocadoraRestController {
 		locadora.setPassword((String) json.get("password"));
 		locadora.setRole((String) json.get("role"));
 		locadora.setCNPJ((String) json.get("cnpj"));
+		locadora.setEnabled(true);
 		locadora.setNome((String) json.get("nome"));
-		locadora.setCidade((String) json.get("telefone"));
+		locadora.setCidade((String) json.get("cidade"));
 
 	}
 
 	@PostMapping(path = "/locadoras")
 	@ResponseBody
-	public ResponseEntity<Locadora> lista(@RequestBody JSONObject json) {
+	public ResponseEntity<Locadora> cria(@RequestBody JSONObject json) {
 		try {
 			if (isJSONValid(json.toString())) {
 				Locadora locadora = new Locadora();
